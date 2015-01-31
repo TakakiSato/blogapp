@@ -1,0 +1,2 @@
+module BlogIndicesHelper
+end

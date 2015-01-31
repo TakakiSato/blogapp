@@ -1,0 +1,39 @@
+
+<p id="notice"><%= notice %></p>
+<div class=main>
+  <% @blog_id = eval("@blog_id_#{params[:id]}")%>
+  <h1><%= @blog_id["title"] %></h1>
+  <%#@blog_id_XXには以下が入っている。XXにはblog_idが入っている
+  #{"max_content_num"=個記事と写真の総数(数字) "min_img_num"=最初の画像の記事内ID(数字),
+  #"id"=>記事ID(数字), "created_at"=>日付, "updated_at"=>日付, "title"=>"タイトル(文字列)",
+  #記事内ID=>コンテンツ(画像へのパスか、記事のそのもの)※記事内ID分繰り返し,
+  #"blog_txt_all"=>indexに表示させる記事 記事最初の100文字(文字列),
+  #"min_img_path"=>"indexに表示させる画像のパス"}%>
+  <dt>
+    <dd>
+      <% num=1%>
+      <% while num <= @blog_id["max_content_num"] do %>
+      <% if @blog_id["#{num}"].present? %>
+      <%##コンテンツが画像のパスかを判断。パスの場合イメージタグを作成 %>
+      <% if /\/*\/*.jpg/ =~ @blog_id["#{num}"] %>
+      <br clear="left">
+      <%= image_tag @blog_id["#{num}"], class: "middle-img",align:"right"%>
+      <%#= @blog_id["#{num}"] %>
+      <% else%>
+      <%= @blog_id["#{num}"]%>
+      <% end %>
+      <% end %>
+      <% num=num+1%>
+      <% end %>
+      <%# if /\/*\/*.jpg/ =~ "2014/14/aaa.jpg" %>
+
+      <%# end %>
+    </dd>
+  </dt>
+
+</div>
+
+
+<br clear="left">
+<%#= link_to '更新', edit_blog_index_path(@blog_index) %> |
+<%= link_to '戻る', blog_indices_path, :id => 'blog_indeices'%>

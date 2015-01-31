@@ -1,0 +1,86 @@
+<%= form_tag('/blog_indices', :multipart => true) do %>
+
+<%#タイトル入力欄 %>
+<div class="title">
+  <%= label_tag "title" %><br>
+  <%= text_field_tag "blog_indices[title]" %><br>
+</div>
+
+<div id="content_list">
+  <%#テキスト入力欄 %>
+  <li style="list-style:none;">
+    <div class="text_1">
+      <%= label_tag "text_1"  %><br>
+      <%= text_area_tag "blog_textes[1]" %>
+    </div>
+  </li>
+
+</div>
+<input type="button" value="テキストの追加" id="text_add">
+<input type="button" value="画像の追加" id="image_add">
+
+<%#送信ボタン %>
+<div class="actions">
+  <%= submit_tag "送信" , disable_with: "送信中...",id: "commit" %>
+</div>
+<% end %>
+
+
+<!-- JavaScript -->
+<script>
+$(function($) {
+  var len_list = $("#content_list > li").length + 1 ;
+  // "テキストの追加"ボタンを押した場合の処理
+  $("#text_add").click(function(){
+    // テキスト入力欄を追加
+    var new_list = '<li style="list-style:none;"><div class="text_' + len_list + '"><label for="text_' + len_list + '">Text ' + len_list + '</label><br><textarea id="blog_textes_'+ len_list + '" name="blog_textes['+ len_list + ']"/></div></li>';
+    $("#content_list").append(new_list);
+    // 削除ボタンの一旦全消去し、配置し直す
+    $('#content_list input[type="button"]').remove();
+    len_list++;
+    for (var i = 0; i < len_list; i++) {
+      var new_btn = '<input type="button" value="削除">';
+      $('#content_list > li').eq(i).append(new_btn);
+    }
+  })
+  // "イメージの追加"ボタンを押した場合の処理
+  $("#image_add").click(function(){
+    // イメージ入力欄を追加
+    var new_list = '<li style="list-style:none;"><div class="image_' + len_list + '"><label for="image_' + len_list + '">Image ' + len_list + '</label><br><input type="file" id="blog_images_'+ len_list + '" name="blog_images['+ len_list + ']"/></div></li>';
+    $("#content_list").append(new_list);
+    // 削除ボタンの一旦全消去し、配置し直す
+    $('#content_list input[type="button"]').remove();
+    len_list++;
+    for (var i = 0; i < len_list; i++) {
+      var new_btn = '<input type="button" value="削除">';
+      $('#content_list > li').eq(i).append(new_btn);
+    }
+  })
+  // 削除ボタンを押した場合の処理
+  $(document).on('click', '#content_list input[type="button"]', function(ev) {
+    //入力欄を削除
+    var idx = $(ev.target).parent().index();
+    $('#content_list > li').eq(idx).remove();
+    var len_list = $('#content_list > li').length;
+    // 入力欄がひとつになるなら、削除ボタンは不要なので消去
+    if (len_list == 1) $('#content_list input[type="button"]').remove();
+  })
+});
+</script>
+
+<script>
+$(function(){
+  $("form").validate({
+    rules: {
+      "blog_indices[title]" :{
+        required: true
+      }
+    },
+    messages: {
+      "blog_indices[title]" :{
+        required: "タイトルを入力してください"
+      }
+    }
+  });
+})
+</script>

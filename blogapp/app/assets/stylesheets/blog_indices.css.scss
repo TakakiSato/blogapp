@@ -1,0 +1,107 @@
+// Place all the styles related to the blog_indices controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+//--------------------------------------
+//application.html.erbに記載
+//参考 http://www.ne.jp/asahi/hatakeyama/design/csslayout/2column/2col3.html
+/* header */
+#header {
+  height: 200px;
+  //左右いっぱいにするため幅を100％にする
+  width: 100%;
+  //画像をX軸方向にリピートする
+  background: #CC8C44 url(../img/header_bg.jpg) repeat-x;
+  border-style: solid;
+  border-radius: 10px;        /* CSS3草案 */
+  -webkit-border-radius: 10px;    /* Safari,Google Chrome用 */
+  -moz-border-radius: 10px;   /* Firefox用 */
+}
+/*
+#headervisual {
+height: 200px;
+//タイトル文字も背景の模様もある1枚画像
+background: url(../img/header.jpg) no-repeat center;
+//次に中に入る#headspaceをセンター合わせにするため(オールドブラウザ用)
+text-align: center;
+width: 100%;
+}
+
+#headervisual #headspace {
+//センター合わせにする
+margin: 0px auto;
+height: 116px;
+//幅を決める
+width: 810px;
+//(オールドブラウザ用)
+text-align: left;
+}
+
+#header #headervisual #headspace #headttl h1 a {
+//h1でタイトルを入れるために
+font-size: 13px;
+line-height: 60px;
+color: #CCFF00;
+//文字だけでなくボックス全体がボタンになる
+display: block;
+height: 116px;
+width: 350px;
+text-indent: 7px;
+}
+
+#headersubmenu{
+}
+*/
+
+#outline {
+  border-style: solid;
+  text-align:left;
+  width:80%;
+  height:100%;
+  margin:0%;
+  padding:2%;
+  border:1px gray;
+  background-color:white;
+  font-size:150%;
+  border-radius: 10px;        /* CSS3草案 */
+  -webkit-border-radius: 10px;    /* Safari,Google Chrome用 */
+  -moz-border-radius: 10px;   /* Firefox用 */
+  //word-wrap: break-word;
+  //  overflow:auto;
+}
+
+#blog_tilte{
+  font: bold 500% "メイリオ";
+  color: #fffafa;
+      text-shadow: //2px 2px 0px #808080,
+    //-2px 2px 0px #808080,
+    //2px -2px 0px #808080,
+    -2px -2px 0px #808080;
+}
+#blog_description{
+  font: bold 100% "メイリオ";
+}
+//----------------------------------
+
+
+//----------------------------------
+//index.html.erb
+.middle-img{
+  width: 20%;
+  float:left;
+}
+
+h1{
+  font-size:200%;
+  line-height:200%
+}
+
+#title {
+  font-size:150%;
+  line-height:150%
+}
+
+#sammay{
+  font-size:125%;
+  line-height:125%
+}
