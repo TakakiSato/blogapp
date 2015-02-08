@@ -13,9 +13,10 @@
       <% @blog_id_array.each do |blog_id| %>
       <dt>
         <hr>
-        <div id="title">
+        <br>
+        <h3><div id="title">
           <%= eval("@blog_id_#{blog_id}")["title"] %>
-        </div>
+        </div></h3>
         <%#@blog_id_XXには以下が入っている。XXにはblog_idが入っている
         #{"max_content_num"個記事と写真の総数(数字) "min_img_num"=最初の画像の記事内ID(数字),
         #"id"=>記事ID(数字), "created_at"=>日付, "updated_at"=>日付, "title"=>"タイトル(文字列)",
@@ -35,7 +36,7 @@
       <% end %>
     </dl>
     <%#記事一覧表示処理ここまで %>
-    <%= link_to '新規投稿', new_blog_index_path, :id =>'new_blog_index' %>
+    <%#= link_to '新規投稿', new_blog_index_path, :id =>'new_blog_index' %>
     <br>
   </tbody>
 </table>
