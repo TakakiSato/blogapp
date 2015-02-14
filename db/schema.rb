@@ -22,11 +22,11 @@ ActiveRecord::Schema.define(version: 20141102073604) do
   end
 
   create_table "blog_indices", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "title",       null: false
     t.integer  "contents_id", null: false
     t.integer  "detail_id",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "blog_textes", force: true do |t|

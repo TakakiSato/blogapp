@@ -82,7 +82,7 @@ class BlogIndicesController < ApplicationController
           #logger.debug(file)
           #ファイルを格納するディレクトリを作成する。
           logger.debug(@dir_path)
-          Dir::mkdir(@dir_path,0555) unless FileTest.exist?(@dir_path)
+          Dir::mkdir(@dir_path,0666) unless FileTest.exist?(@dir_path)
           #画像ファイルを書き込む
           File.binwrite(@file_path, @image[1].read)
           logger.debug(@file_path)
@@ -172,6 +172,8 @@ class BlogIndicesController < ApplicationController
             @comp_img=[eval("@blog_id_#{blog_id}")['min_img_num'],blog_index.contents_num]
             eval("@blog_id_#{blog_id}").store('min_img_num',@comp_img.min)
           else
+            #改行コードを改行タグに変換
+            #loger(eval("@blog_id_#{blog_id}.store('#{blog_index.contents_num}')"))
             eval("@blog_id_#{blog_id}.store('#{blog_index.contents_num}',blog_index.txt)")
             #全文取得
             eval("@blog_id_#{blog_id}_txt_all") << blog_index.txt
