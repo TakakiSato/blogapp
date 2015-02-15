@@ -14,9 +14,14 @@
       <dt>
         <hr>
         <br>
-        <h3><div id="title">
-          <%= eval("@blog_id_#{blog_id}")["title"] %>
-        </div></h3>
+        <h3>
+          <div id="title">
+            <%= link_to blog_index_path(blog_id), class: "button" do%>
+            <%= eval("@blog_id_#{blog_id}")["title"] %>
+            <%= eval("@blog_id_#{blog_id}")["created_at"].strftime("%Y-%m-%d") %>
+            <% end %>
+          </div>
+        </h3>
         <%#@blog_id_XXには以下が入っている。XXにはblog_idが入っている
         #{"max_content_num"個記事と写真の総数(数字) "min_img_num"=最初の画像の記事内ID(数字),
         #"id"=>記事ID(数字), "created_at"=>日付, "updated_at"=>日付, "title"=>"タイトル(文字列)",
@@ -25,11 +30,8 @@
         #"min_img_path"=>"indexに表示させる画像のパス"}%>
         <dd>
           <div id="sammay">
-            <%= link_to blog_index_path(blog_id) do%>
             <%= image_tag eval("@blog_id_#{blog_id}['min_img_path']"), class: "thumbnail-img"%>
-            <br/>
             <%= br(eval("@blog_id_#{blog_id}['blog_txt_all']")) %>
-            <% end %>
           </div>
         </dd>
       </dt>

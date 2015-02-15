@@ -1,6 +1,7 @@
 class BlogIndicesController < ApplicationController
   before_action :set_blog_index, only: [:show, :edit, :update, :destroy]
-
+  # ユーザがログインしていないと"show"にアクセスできない
+  before_action :authenticate_blog_user!, only: [:new, :create]
   # GET /blog_indices
   # GET /blog_indices.json
   def index

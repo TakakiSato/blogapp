@@ -64,4 +64,5 @@ group :development, :test do
 #to nest_form
 gem "nested_form"
 
+gem 'devise'
 end

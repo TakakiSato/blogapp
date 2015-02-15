@@ -1,40 +1,60 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>ブログを作るブログ</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+  <%=stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track'=> true %>
+  <%=javascript_include_tag 'application', 'data-turbolinks-track'=> true %>
+  <%=csrf_meta_tags %>
   <script src="http://code.jquery.com/jquery.min.js"></script>
   <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
 
 </head>
+
 <body>
   <div id="container">
     <h1>ブログを作るブログ</h1>
+    <!-- signed_in? はユーザがログインしているか調べるdeviseのHelperメソッド -->
+    <div>
+      <!-- signed_in? はユーザがログインしているか調べるdeviseのHelperメソッド -->
+      <% if signed_in? %>
+      <!-- current_user は現在ログインしているUserオブジェクトを返すdeviseのHelperメソッド -->
+      <!-- *_path はUserモデルを作成したときに、
+      deviseにより自動で作成されてますので、rake routesで確認できます -->
+      Logged in as <strong><%= current_blog_user.email %></strong>.
+      <%= link_to 'プロフィール変更', edit_blog_user_registration_path %> |
+      <%= link_to "ログアウト", destroy_blog_user_session_path, method: :delete %>
+      <% end %>
+    </div>
     <div id="header">
       <dl id="headlist">
         <dt>
           <dd>
-            <h2><a href="index.html"><%= image_tag "css/logo.png",:id=>"h2_img" %></a></h2>
-          </dd>
-          <dd>
-            <div id="blog_description">
-              プログラミングの勉強中の
-              <a href="https://twitter.com/Def_Drank" target="_blank">@Def_Drank</a>です。<br>
-              勉強の一環でブログサイトを作ってみようという試み。構築のすったもんだを記事に書いていこうという魂胆。<br>
-              叱咤激励、バグ報告、お仕事のお話など頂ける...。そんな奇特な方がいらっしゃいましたら、大変お手数ですが、<br>
-              <a href="https://twitter.com/Def_Drank" target="_blank">@Def_Drank</a>
-              へお願いします。しっぽ振って喜びます。
+            <h2>
+              <a href="/blog_indices">
+                <%=image_tag "css/logo.png",:id=>"h2_img" %></a>
+              </h2>
             </dd>
-          </dt>
-        </dl>
-      </div>
-    <br clear="all" class="clear" />
-    <div id="wrapper">
-            <%= yield %>
+            <dd>
+              <div id="blog_description">
+                プログラミングの勉強中の
+                <a href="https://twitter.com/Def_Drank" target="_blank">@Def_Drank</a>です。
+                <br> 勉強の一環でブログサイトを作ってみようという試み。構築のすったもんだを記事に書いていこうという魂胆。
+                <br> 叱咤激励、バグ報告、お仕事のお話など頂ける...。そんな奇特な方がいらっしゃいましたら、大変お手数ですが、
+                <br>
+                <a href="https://twitter.com/Def_Drank" target="_blank">@Def_Drank</a> へお願いします。しっぽ振って喜びます。
+              </dd>
+            </dt>
+          </dl>
+        </div>
+        <br clear="all" class="clear" />
+        <div id="wrapper">
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
+          <%=yield %>
+        </div>
       </div>
     </div>
-  </div>
   </body>
+
   </html>
