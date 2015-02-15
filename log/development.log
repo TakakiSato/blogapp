@@ -25248,3 +25248,418 @@ Started GET "/assets/application.js?body=1" for 192.168.33.1 at 2015-02-15 07:50
 
 
 Started GET "/assets/css/logo.png" for 192.168.33.1 at 2015-02-15 07:50:52 +0000
+
+
+Started GET "/blog_indices/5" for 192.168.33.1 at 2015-02-15 08:03:14 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by BlogIndicesController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mBlogIndex Load (0.4ms)[0m  SELECT  `blog_indices`.* FROM `blog_indices`  WHERE `blog_indices`.`id` = 5 LIMIT 1
+  [1m[36mBlogIndex Load (0.6ms)[0m  [1m
+    (select
+    INX.id,
+    INX.created_at,
+    INX.updated_at,
+    INX.title,
+    INX.contents_id as txt_array_max,
+    INX.detail_id as img_array_max,
+    IMG.detail_id as contents_num,
+    IMG.image as img,
+    '' as txt
+    from blog_images as IMG
+    right join
+    (select blog_indices.*
+    from
+    blog_indices
+    where id = '5'
+    order by
+    updated_at asc
+    limit 5) as INX
+    on INX.id=IMG.contents_id)
+    union
+    (select
+    INX.id,
+    INX.created_at,
+    INX.updated_at,
+    INX.title,
+    INX.contents_id,
+    INX.detail_id,
+    TXT.detail_id,
+    '',
+    TXT.text
+    from blog_textes as TXT
+    right join
+    (select blog_indices.*
+    from
+    blog_indices
+    where id = '5'
+    order by
+    updated_at asc
+    limit 5) as INX
+    on INX.id=TXT.contents_id);
+    [0m
+DBから取得した値は[#<BlogIndex id: 5, title: "改行、画像が表示されない", created_at: "2015-02-15 07:46:01", updated_at: "2015-02-15 07:46:01">, #<BlogIndex id: 5, title: "改行、画像が表示されない", created_at: "2015-02-15 07:46:01", updated_at: "2015-02-15 07:46:01">, #<BlogIndex id: 5, title: "改行、画像が表示されない", created_at: "2015-02-15 07:46:01", updated_at: "2015-02-15 07:46:01">, #<BlogIndex id: 5, title: "改行、画像が表示されない", created_at: "2015-02-15 07:46:01", updated_at: "2015-02-15 07:46:01">, #<BlogIndex id: 5, title: "改行、画像が表示されない", created_at: "2015-02-15 07:46:01", updated_at: "2015-02-15 07:46:01">]
+対象のblog_idは[5]
+{"max_content_num"=>5, "min_img_num"=>2, "id"=>5, "created_at"=>Sun, 15 Feb 2015 07:46:01 UTC +00:00, "updated_at"=>Sun, 15 Feb 2015 07:46:01 UTC +00:00, "title"=>"改行、画像が表示されない", "2"=>"2015/5/2.jpg", "4"=>"2015/5/4.jpg", "1"=>"公開したものの、さっそく以下の問題が。。。\r\n\r\n1.改行が表示されない。\r\n2.画像が表示されない。\r\n", "3"=>"いけてない。修正だ!!\r\n\r\n1.改行に表示されない。\r\nいや。テストで気づけよという話ですが。。。\r\n\r\nまぁhtmlで表示ですもんね。\r\n改行コードを<br>に変えなければそりゃ改行されるわけがないって話。\r\n\r\nsimple_formatを使用すれば良さそう‼\r\nhttp://qiita.com/t_oginogin/items/0164ad76b753fdff9902\r\n", "5"=>"\r\nおお。。。\r\n\r\n改行が連続するとだめっぽい。。。\r\n\r\nsimple_formatを元にhelperメソッドを作成\r\n\r\napplication_helper.rbに\r\n\r\ndef br(text)\r\n  return text if text.nil?\r\n  text = h text\r\n  text.gsub(/\\r\\n|\\r|\\n/, \"\r\n\").html_safe\r\nend\r\n\r\n※コード表示用のボックス作りたいなぁ。。。\r\n\r\nhttp://invoketwoa.hatenablog.com/entry/2012/05/10/115147\r\n\r\nとりあえず改行は上手くいった‼\r\n\r\nさぁ次。\r\n\r\n2.画像が表示されない。\r\n\r\nproduction環境だと、/public配下に画像を配置する必要がありそう。\r\n\r\n確かに、/app/asset配下に出力してました。\r\n\r\nhttp://qiita.com/wadako111/items/03bc00d914e62243a511\r\n\r\nプログラムのパス指定を変更して終了。\r\n", "blog_txt_all"=>"公開したものの、さっそく以下の問題が。。。\r\n\r\n1.改行が表示されない。\r\n2.画像が表示されない。...", "min_img_path"=>"2015/5/2.jpg"}
+  Rendered blog_indices/show.html.erb within layouts/application (49.7ms)
+Completed 200 OK in 891ms (Views: 804.9ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/assets/blog_indices.css?body=1" for 192.168.33.1 at 2015-02-15 08:03:16 +0000
+
+
+Started GET "/assets/blog_users.css?body=1" for 192.168.33.1 at 2015-02-15 08:03:16 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 192.168.33.1 at 2015-02-15 08:03:16 +0000
+
+
+Started GET "/assets/jquery.js?body=1" for 192.168.33.1 at 2015-02-15 08:03:16 +0000
+
+
+Started GET "/assets/scaffolds.css?body=1" for 192.168.33.1 at 2015-02-15 08:03:16 +0000
+
+
+Started GET "/assets/application.css?body=1" for 192.168.33.1 at 2015-02-15 08:03:16 +0000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 192.168.33.1 at 2015-02-15 08:03:16 +0000
+
+
+Started GET "/assets/blog_indices.js?body=1" for 192.168.33.1 at 2015-02-15 08:03:16 +0000
+
+
+Started GET "/assets/blog_users.js?body=1" for 192.168.33.1 at 2015-02-15 08:03:16 +0000
+
+
+Started GET "/assets/application.js?body=1" for 192.168.33.1 at 2015-02-15 08:03:17 +0000
+
+
+Started GET "/assets/css/logo.png" for 192.168.33.1 at 2015-02-15 08:03:17 +0000
+
+
+Started GET "/assets/css/128-149.jpg" for 192.168.33.1 at 2015-02-15 08:03:17 +0000
+
+
+Started GET "/blog_indices/5" for 192.168.33.1 at 2015-02-15 08:06:44 +0000
+Processing by BlogIndicesController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mBlogIndex Load (0.4ms)[0m  SELECT  `blog_indices`.* FROM `blog_indices`  WHERE `blog_indices`.`id` = 5 LIMIT 1
+  [1m[36mBlogIndex Load (0.7ms)[0m  [1m
+    (select
+    INX.id,
+    INX.created_at,
+    INX.updated_at,
+    INX.title,
+    INX.contents_id as txt_array_max,
+    INX.detail_id as img_array_max,
+    IMG.detail_id as contents_num,
+    IMG.image as img,
+    '' as txt
+    from blog_images as IMG
+    right join
+    (select blog_indices.*
+    from
+    blog_indices
+    where id = '5'
+    order by
+    updated_at asc
+    limit 5) as INX
+    on INX.id=IMG.contents_id)
+    union
+    (select
+    INX.id,
+    INX.created_at,
+    INX.updated_at,
+    INX.title,
+    INX.contents_id,
+    INX.detail_id,
+    TXT.detail_id,
+    '',
+    TXT.text
+    from blog_textes as TXT
+    right join
+    (select blog_indices.*
+    from
+    blog_indices
+    where id = '5'
+    order by
+    updated_at asc
+    limit 5) as INX
+    on INX.id=TXT.contents_id);
+    [0m
+DBから取得した値は[#<BlogIndex id: 5, title: "改行、画像が表示されない", created_at: "2015-02-15 07:46:01", updated_at: "2015-02-15 07:46:01">, #<BlogIndex id: 5, title: "改行、画像が表示されない", created_at: "2015-02-15 07:46:01", updated_at: "2015-02-15 07:46:01">, #<BlogIndex id: 5, title: "改行、画像が表示されない", created_at: "2015-02-15 07:46:01", updated_at: "2015-02-15 07:46:01">, #<BlogIndex id: 5, title: "改行、画像が表示されない", created_at: "2015-02-15 07:46:01", updated_at: "2015-02-15 07:46:01">, #<BlogIndex id: 5, title: "改行、画像が表示されない", created_at: "2015-02-15 07:46:01", updated_at: "2015-02-15 07:46:01">]
+対象のblog_idは[5]
+{"max_content_num"=>5, "min_img_num"=>2, "id"=>5, "created_at"=>Sun, 15 Feb 2015 07:46:01 UTC +00:00, "updated_at"=>Sun, 15 Feb 2015 07:46:01 UTC +00:00, "title"=>"改行、画像が表示されない", "2"=>"2015/5/2.jpg", "4"=>"2015/5/4.jpg", "1"=>"公開したものの、さっそく以下の問題が。。。\r\n\r\n1.改行が表示されない。\r\n2.画像が表示されない。\r\n", "3"=>"いけてない。修正だ!!\r\n\r\n1.改行に表示されない。\r\nいや。テストで気づけよという話ですが。。。\r\n\r\nまぁhtmlで表示ですもんね。\r\n改行コードを<br>に変えなければそりゃ改行されるわけがないって話。\r\n\r\nsimple_formatを使用すれば良さそう‼\r\nhttp://qiita.com/t_oginogin/items/0164ad76b753fdff9902\r\n", "5"=>"\r\nおお。。。\r\n\r\n改行が連続するとだめっぽい。。。\r\n\r\nsimple_formatを元にhelperメソッドを作成\r\n\r\napplication_helper.rbに\r\n\r\ndef br(text)\r\n  return text if text.nil?\r\n  text = h text\r\n  text.gsub(/\\r\\n|\\r|\\n/, \"\r\n\").html_safe\r\nend\r\n\r\n※コード表示用のボックス作りたいなぁ。。。\r\n\r\nhttp://invoketwoa.hatenablog.com/entry/2012/05/10/115147\r\n\r\nとりあえず改行は上手くいった‼\r\n\r\nさぁ次。\r\n\r\n2.画像が表示されない。\r\n\r\nproduction環境だと、/public配下に画像を配置する必要がありそう。\r\n\r\n確かに、/app/asset配下に出力してました。\r\n\r\nhttp://qiita.com/wadako111/items/03bc00d914e62243a511\r\n\r\nプログラムのパス指定を変更して終了。\r\n", "blog_txt_all"=>"公開したものの、さっそく以下の問題が。。。\r\n\r\n1.改行が表示されない。\r\n2.画像が表示されない。...", "min_img_path"=>"2015/5/2.jpg"}
+  Rendered blog_indices/show.html.erb within layouts/application (41.3ms)
+Completed 200 OK in 466ms (Views: 456.2ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/assets/blog_indices.css?body=1" for 192.168.33.1 at 2015-02-15 08:06:45 +0000
+
+
+Started GET "/assets/blog_users.css?body=1" for 192.168.33.1 at 2015-02-15 08:06:45 +0000
+
+
+Started GET "/assets/application.css?body=1" for 192.168.33.1 at 2015-02-15 08:06:45 +0000
+
+
+Started GET "/assets/scaffolds.css?body=1" for 192.168.33.1 at 2015-02-15 08:06:45 +0000
+
+
+Started GET "/assets/jquery.js?body=1" for 192.168.33.1 at 2015-02-15 08:06:45 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 192.168.33.1 at 2015-02-15 08:06:46 +0000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 192.168.33.1 at 2015-02-15 08:06:46 +0000
+
+
+Started GET "/assets/blog_indices.js?body=1" for 192.168.33.1 at 2015-02-15 08:06:46 +0000
+
+
+Started GET "/assets/blog_users.js?body=1" for 192.168.33.1 at 2015-02-15 08:06:46 +0000
+
+
+Started GET "/assets/application.js?body=1" for 192.168.33.1 at 2015-02-15 08:06:46 +0000
+
+
+Started GET "/assets/css/logo.png" for 192.168.33.1 at 2015-02-15 08:06:46 +0000
+
+
+Started GET "/blog_indices/5" for 192.168.33.1 at 2015-02-15 08:06:55 +0000
+Processing by BlogIndicesController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mBlogIndex Load (0.2ms)[0m  SELECT  `blog_indices`.* FROM `blog_indices`  WHERE `blog_indices`.`id` = 5 LIMIT 1
+  [1m[36mBlogIndex Load (0.8ms)[0m  [1m
+    (select
+    INX.id,
+    INX.created_at,
+    INX.updated_at,
+    INX.title,
+    INX.contents_id as txt_array_max,
+    INX.detail_id as img_array_max,
+    IMG.detail_id as contents_num,
+    IMG.image as img,
+    '' as txt
+    from blog_images as IMG
+    right join
+    (select blog_indices.*
+    from
+    blog_indices
+    where id = '5'
+    order by
+    updated_at asc
+    limit 5) as INX
+    on INX.id=IMG.contents_id)
+    union
+    (select
+    INX.id,
+    INX.created_at,
+    INX.updated_at,
+    INX.title,
+    INX.contents_id,
+    INX.detail_id,
+    TXT.detail_id,
+    '',
+    TXT.text
+    from blog_textes as TXT
+    right join
+    (select blog_indices.*
+    from
+    blog_indices
+    where id = '5'
+    order by
+    updated_at asc
+    limit 5) as INX
+    on INX.id=TXT.contents_id);
+    [0m
+DBから取得した値は[#<BlogIndex id: 5, title: "改行、画像が表示されない", created_at: "2015-02-15 07:46:01", updated_at: "2015-02-15 07:46:01">, #<BlogIndex id: 5, title: "改行、画像が表示されない", created_at: "2015-02-15 07:46:01", updated_at: "2015-02-15 07:46:01">, #<BlogIndex id: 5, title: "改行、画像が表示されない", created_at: "2015-02-15 07:46:01", updated_at: "2015-02-15 07:46:01">, #<BlogIndex id: 5, title: "改行、画像が表示されない", created_at: "2015-02-15 07:46:01", updated_at: "2015-02-15 07:46:01">, #<BlogIndex id: 5, title: "改行、画像が表示されない", created_at: "2015-02-15 07:46:01", updated_at: "2015-02-15 07:46:01">]
+対象のblog_idは[5]
+{"max_content_num"=>5, "min_img_num"=>2, "id"=>5, "created_at"=>Sun, 15 Feb 2015 07:46:01 UTC +00:00, "updated_at"=>Sun, 15 Feb 2015 07:46:01 UTC +00:00, "title"=>"改行、画像が表示されない", "2"=>"2015/5/2.jpg", "4"=>"2015/5/4.jpg", "1"=>"公開したものの、さっそく以下の問題が。。。\r\n\r\n1.改行が表示されない。\r\n2.画像が表示されない。\r\n", "3"=>"いけてない。修正だ!!\r\n\r\n1.改行に表示されない。\r\nいや。テストで気づけよという話ですが。。。\r\n\r\nまぁhtmlで表示ですもんね。\r\n改行コードを<br>に変えなければそりゃ改行されるわけがないって話。\r\n\r\nsimple_formatを使用すれば良さそう‼\r\nhttp://qiita.com/t_oginogin/items/0164ad76b753fdff9902\r\n", "5"=>"\r\nおお。。。\r\n\r\n改行が連続するとだめっぽい。。。\r\n\r\nsimple_formatを元にhelperメソッドを作成\r\n\r\napplication_helper.rbに\r\n\r\ndef br(text)\r\n  return text if text.nil?\r\n  text = h text\r\n  text.gsub(/\\r\\n|\\r|\\n/, \"\r\n\").html_safe\r\nend\r\n\r\n※コード表示用のボックス作りたいなぁ。。。\r\n\r\nhttp://invoketwoa.hatenablog.com/entry/2012/05/10/115147\r\n\r\nとりあえず改行は上手くいった‼\r\n\r\nさぁ次。\r\n\r\n2.画像が表示されない。\r\n\r\nproduction環境だと、/public配下に画像を配置する必要がありそう。\r\n\r\n確かに、/app/asset配下に出力してました。\r\n\r\nhttp://qiita.com/wadako111/items/03bc00d914e62243a511\r\n\r\nプログラムのパス指定を変更して終了。\r\n", "blog_txt_all"=>"公開したものの、さっそく以下の問題が。。。\r\n\r\n1.改行が表示されない。\r\n2.画像が表示されない。...", "min_img_path"=>"2015/5/2.jpg"}
+  Rendered blog_indices/show.html.erb within layouts/application (54.5ms)
+Completed 200 OK in 476ms (Views: 470.2ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/blog_users.css?body=1" for 192.168.33.1 at 2015-02-15 08:06:56 +0000
+
+
+Started GET "/assets/blog_indices.css?body=1" for 192.168.33.1 at 2015-02-15 08:06:56 +0000
+
+
+Started GET "/assets/scaffolds.css?body=1" for 192.168.33.1 at 2015-02-15 08:06:56 +0000
+
+
+Started GET "/assets/application.css?body=1" for 192.168.33.1 at 2015-02-15 08:06:56 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 192.168.33.1 at 2015-02-15 08:06:56 +0000
+
+
+Started GET "/assets/jquery.js?body=1" for 192.168.33.1 at 2015-02-15 08:06:56 +0000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 192.168.33.1 at 2015-02-15 08:06:56 +0000
+
+
+Started GET "/assets/blog_indices.js?body=1" for 192.168.33.1 at 2015-02-15 08:06:56 +0000
+
+
+Started GET "/assets/blog_users.js?body=1" for 192.168.33.1 at 2015-02-15 08:06:57 +0000
+
+
+Started GET "/assets/application.js?body=1" for 192.168.33.1 at 2015-02-15 08:06:57 +0000
+
+
+Started GET "/assets/css/logo.png" for 192.168.33.1 at 2015-02-15 08:06:57 +0000
+
+
+Started GET "/assets/css/128-149.jpg" for 192.168.33.1 at 2015-02-15 08:06:57 +0000
+
+
+Started GET "/blog_indices/5" for 192.168.33.1 at 2015-02-15 08:08:49 +0000
+Processing by BlogIndicesController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mBlogIndex Load (0.2ms)[0m  SELECT  `blog_indices`.* FROM `blog_indices`  WHERE `blog_indices`.`id` = 5 LIMIT 1
+  [1m[36mBlogIndex Load (5.9ms)[0m  [1m
+    (select
+    INX.id,
+    INX.created_at,
+    INX.updated_at,
+    INX.title,
+    INX.contents_id as txt_array_max,
+    INX.detail_id as img_array_max,
+    IMG.detail_id as contents_num,
+    IMG.image as img,
+    '' as txt
+    from blog_images as IMG
+    right join
+    (select blog_indices.*
+    from
+    blog_indices
+    where id = '5'
+    order by
+    updated_at asc
+    limit 5) as INX
+    on INX.id=IMG.contents_id)
+    union
+    (select
+    INX.id,
+    INX.created_at,
+    INX.updated_at,
+    INX.title,
+    INX.contents_id,
+    INX.detail_id,
+    TXT.detail_id,
+    '',
+    TXT.text
+    from blog_textes as TXT
+    right join
+    (select blog_indices.*
+    from
+    blog_indices
+    where id = '5'
+    order by
+    updated_at asc
+    limit 5) as INX
+    on INX.id=TXT.contents_id);
+    [0m
+DBから取得した値は[#<BlogIndex id: 5, title: "改行、画像が表示されない", created_at: "2015-02-15 07:46:01", updated_at: "2015-02-15 07:46:01">, #<BlogIndex id: 5, title: "改行、画像が表示されない", created_at: "2015-02-15 07:46:01", updated_at: "2015-02-15 07:46:01">, #<BlogIndex id: 5, title: "改行、画像が表示されない", created_at: "2015-02-15 07:46:01", updated_at: "2015-02-15 07:46:01">, #<BlogIndex id: 5, title: "改行、画像が表示されない", created_at: "2015-02-15 07:46:01", updated_at: "2015-02-15 07:46:01">, #<BlogIndex id: 5, title: "改行、画像が表示されない", created_at: "2015-02-15 07:46:01", updated_at: "2015-02-15 07:46:01">]
+対象のblog_idは[5]
+{"max_content_num"=>5, "min_img_num"=>2, "id"=>5, "created_at"=>Sun, 15 Feb 2015 07:46:01 UTC +00:00, "updated_at"=>Sun, 15 Feb 2015 07:46:01 UTC +00:00, "title"=>"改行、画像が表示されない", "2"=>"2015/5/2.jpg", "4"=>"2015/5/4.jpg", "1"=>"公開したものの、さっそく以下の問題が。。。\r\n\r\n1.改行が表示されない。\r\n2.画像が表示されない。\r\n", "3"=>"いけてない。修正だ!!\r\n\r\n1.改行に表示されない。\r\nいや。テストで気づけよという話ですが。。。\r\n\r\nまぁhtmlで表示ですもんね。\r\n改行コードを<br>に変えなければそりゃ改行されるわけがないって話。\r\n\r\nsimple_formatを使用すれば良さそう‼\r\nhttp://qiita.com/t_oginogin/items/0164ad76b753fdff9902\r\n", "5"=>"\r\nおお。。。\r\n\r\n改行が連続するとだめっぽい。。。\r\n\r\nsimple_formatを元にhelperメソッドを作成\r\n\r\napplication_helper.rbに\r\n\r\ndef br(text)\r\n  return text if text.nil?\r\n  text = h text\r\n  text.gsub(/\\r\\n|\\r|\\n/, \"\r\n\").html_safe\r\nend\r\n\r\n※コード表示用のボックス作りたいなぁ。。。\r\n\r\nhttp://invoketwoa.hatenablog.com/entry/2012/05/10/115147\r\n\r\nとりあえず改行は上手くいった‼\r\n\r\nさぁ次。\r\n\r\n2.画像が表示されない。\r\n\r\nproduction環境だと、/public配下に画像を配置する必要がありそう。\r\n\r\n確かに、/app/asset配下に出力してました。\r\n\r\nhttp://qiita.com/wadako111/items/03bc00d914e62243a511\r\n\r\nプログラムのパス指定を変更して終了。\r\n", "blog_txt_all"=>"公開したものの、さっそく以下の問題が。。。\r\n\r\n1.改行が表示されない。\r\n2.画像が表示されない。...", "min_img_path"=>"2015/5/2.jpg"}
+  Rendered blog_indices/show.html.erb within layouts/application (45.0ms)
+Completed 200 OK in 610ms (Views: 593.3ms | ActiveRecord: 6.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 192.168.33.1 at 2015-02-15 08:08:49 +0000
+
+
+Started GET "/blog_indices/5" for 192.168.33.1 at 2015-02-15 08:10:46 +0000
+Processing by BlogIndicesController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mBlogIndex Load (0.5ms)[0m  SELECT  `blog_indices`.* FROM `blog_indices`  WHERE `blog_indices`.`id` = 5 LIMIT 1
+  [1m[36mBlogIndex Load (1.2ms)[0m  [1m
+    (select
+    INX.id,
+    INX.created_at,
+    INX.updated_at,
+    INX.title,
+    INX.contents_id as txt_array_max,
+    INX.detail_id as img_array_max,
+    IMG.detail_id as contents_num,
+    IMG.image as img,
+    '' as txt
+    from blog_images as IMG
+    right join
+    (select blog_indices.*
+    from
+    blog_indices
+    where id = '5'
+    order by
+    updated_at asc
+    limit 5) as INX
+    on INX.id=IMG.contents_id)
+    union
+    (select
+    INX.id,
+    INX.created_at,
+    INX.updated_at,
+    INX.title,
+    INX.contents_id,
+    INX.detail_id,
+    TXT.detail_id,
+    '',
+    TXT.text
+    from blog_textes as TXT
+    right join
+    (select blog_indices.*
+    from
+    blog_indices
+    where id = '5'
+    order by
+    updated_at asc
+    limit 5) as INX
+    on INX.id=TXT.contents_id);
+    [0m
+DBから取得した値は[#<BlogIndex id: 5, title: "改行、画像が表示されない", created_at: "2015-02-15 07:46:01", updated_at: "2015-02-15 07:46:01">, #<BlogIndex id: 5, title: "改行、画像が表示されない", created_at: "2015-02-15 07:46:01", updated_at: "2015-02-15 07:46:01">, #<BlogIndex id: 5, title: "改行、画像が表示されない", created_at: "2015-02-15 07:46:01", updated_at: "2015-02-15 07:46:01">, #<BlogIndex id: 5, title: "改行、画像が表示されない", created_at: "2015-02-15 07:46:01", updated_at: "2015-02-15 07:46:01">, #<BlogIndex id: 5, title: "改行、画像が表示されない", created_at: "2015-02-15 07:46:01", updated_at: "2015-02-15 07:46:01">]
+対象のblog_idは[5]
+{"max_content_num"=>5, "min_img_num"=>2, "id"=>5, "created_at"=>Sun, 15 Feb 2015 07:46:01 UTC +00:00, "updated_at"=>Sun, 15 Feb 2015 07:46:01 UTC +00:00, "title"=>"改行、画像が表示されない", "2"=>"2015/5/2.jpg", "4"=>"2015/5/4.jpg", "1"=>"公開したものの、さっそく以下の問題が。。。\r\n\r\n1.改行が表示されない。\r\n2.画像が表示されない。\r\n", "3"=>"いけてない。修正だ!!\r\n\r\n1.改行に表示されない。\r\nいや。テストで気づけよという話ですが。。。\r\n\r\nまぁhtmlで表示ですもんね。\r\n改行コードを<br>に変えなければそりゃ改行されるわけがないって話。\r\n\r\nsimple_formatを使用すれば良さそう‼\r\nhttp://qiita.com/t_oginogin/items/0164ad76b753fdff9902\r\n", "5"=>"\r\nおお。。。\r\n\r\n改行が連続するとだめっぽい。。。\r\n\r\nsimple_formatを元にhelperメソッドを作成\r\n\r\napplication_helper.rbに\r\n\r\ndef br(text)\r\n  return text if text.nil?\r\n  text = h text\r\n  text.gsub(/\\r\\n|\\r|\\n/, \"\r\n\").html_safe\r\nend\r\n\r\n※コード表示用のボックス作りたいなぁ。。。\r\n\r\nhttp://invoketwoa.hatenablog.com/entry/2012/05/10/115147\r\n\r\nとりあえず改行は上手くいった‼\r\n\r\nさぁ次。\r\n\r\n2.画像が表示されない。\r\n\r\nproduction環境だと、/public配下に画像を配置する必要がありそう。\r\n\r\n確かに、/app/asset配下に出力してました。\r\n\r\nhttp://qiita.com/wadako111/items/03bc00d914e62243a511\r\n\r\nプログラムのパス指定を変更して終了。\r\n", "blog_txt_all"=>"公開したものの、さっそく以下の問題が。。。\r\n\r\n1.改行が表示されない。\r\n2.画像が表示されない。...", "min_img_path"=>"2015/5/2.jpg"}
+  Rendered blog_indices/show.html.erb within layouts/application (48.2ms)
+Completed 200 OK in 619ms (Views: 609.7ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/assets/blog_indices.css?body=1" for 192.168.33.1 at 2015-02-15 08:10:47 +0000
+
+
+Started GET "/assets/blog_users.css?body=1" for 192.168.33.1 at 2015-02-15 08:10:47 +0000
+
+
+Started GET "/assets/application.css?body=1" for 192.168.33.1 at 2015-02-15 08:10:47 +0000
+
+
+Started GET "/assets/scaffolds.css?body=1" for 192.168.33.1 at 2015-02-15 08:10:47 +0000
+
+
+Started GET "/assets/jquery.js?body=1" for 192.168.33.1 at 2015-02-15 08:10:47 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 192.168.33.1 at 2015-02-15 08:10:47 +0000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 192.168.33.1 at 2015-02-15 08:10:47 +0000
+
+
+Started GET "/assets/blog_indices.js?body=1" for 192.168.33.1 at 2015-02-15 08:10:47 +0000
+
+
+Started GET "/assets/blog_users.js?body=1" for 192.168.33.1 at 2015-02-15 08:10:47 +0000
+
+
+Started GET "/assets/application.js?body=1" for 192.168.33.1 at 2015-02-15 08:10:48 +0000
+
+
+Started GET "/assets/css/logo.png" for 192.168.33.1 at 2015-02-15 08:10:48 +0000
+
+
+Started GET "/assets/css/128-149.jpg" for 192.168.33.1 at 2015-02-15 08:10:48 +0000

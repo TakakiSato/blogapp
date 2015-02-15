@@ -50,6 +50,12 @@ display:block;
 clear:both;
 }
 
+#h2_img{
+  width: 60%;
+  display:block;
+  clear:both;
+}
+
 /*ページのタイトル部分のテキストリンク-----------------*/
 h2 a:link       {text-decoration:none;color:#F7DB9E;} /*メニュー・テキストリンクの色*/
 h2 a:visited    {text-decoration:none;color:#F7DB9E;} /*メニュー・訪問済みのリンクの色*/
