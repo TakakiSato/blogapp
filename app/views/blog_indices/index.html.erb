@@ -26,8 +26,9 @@
         <dd>
           <div id="sammay">
             <%= link_to blog_index_path(blog_id) do%>
-            <%= image_tag eval("@blog_id_#{blog_id}['min_img_path']"), class: "middle-img",align:"right"%>
-            <%= eval("@blog_id_#{blog_id}['blog_txt_all']") %>
+            <%= image_tag eval("@blog_id_#{blog_id}['min_img_path']"), class: "thumbnail-img"%>
+            <br/>
+            <%= br(eval("@blog_id_#{blog_id}['blog_txt_all']")) %>
             <% end %>
           </div>
         </dd>

@@ -71,30 +71,22 @@ class BlogIndicesController < ApplicationController
         #contents_idにblog_indexのidを投入
         #detail_idは_formに記載されている番号
         for @image in @images_array do
-          @dir_path ="./app/assets/images/#{@blog_index.created_at.strftime("%Y")}/#{@blog_index.id}/"
+          @dir_path ="./public/images#{@blog_index.created_at.strftime("%Y")}/#{@blog_index.id}/"
           @file_path = @dir_path + @image[0] + '.jpg'
           @reg_path = "#{@blog_index.created_at.strftime("%Y")}/#{@blog_index.id}/" + @image[0] + '.jpg'
           logger.debug(@dir_path)
           logger.debug(@image)
           logger.debug(@image[0])
-          #logger.debug(@image[1].read)
-          #file = @image[1].read
-          #logger.debug(file)
+          @blog_images = BlogImages.create(:contents_id=>@blog_index.id,:detail_id=>@image[0] ,:image=>@reg_path )
+
           #ファイルを格納するディレクトリを作成する。
           logger.debug(@dir_path)
           Dir::mkdir(@dir_path,0666) unless FileTest.exist?(@dir_path)
           #画像ファイルを書き込む
           File.binwrite(@file_path, @image[1].read)
           logger.debug(@file_path)
-          #File.open(@file_path ,"w") do |file|
-          #  file.puts(@image[1].read)
-          #end
-          @blog_images = BlogImages.create(:contents_id=>@blog_index.id,:detail_id=>@image[0] ,:image=>@reg_path )
-          logger.debug(@image[0])
         end
       end
-      #rescue => e
-      #  render :new, :text => e.message
     end
     #ほんとはshowへ飛ばしたい。
     respond_to do |format|
@@ -172,8 +164,6 @@ class BlogIndicesController < ApplicationController
             @comp_img=[eval("@blog_id_#{blog_id}")['min_img_num'],blog_index.contents_num]
             eval("@blog_id_#{blog_id}").store('min_img_num',@comp_img.min)
           else
-            #改行コードを改行タグに変換
-            #loger(eval("@blog_id_#{blog_id}.store('#{blog_index.contents_num}')"))
             eval("@blog_id_#{blog_id}.store('#{blog_index.contents_num}',blog_index.txt)")
             #全文取得
             eval("@blog_id_#{blog_id}_txt_all") << blog_index.txt

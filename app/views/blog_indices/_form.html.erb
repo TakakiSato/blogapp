@@ -3,7 +3,7 @@
 <%#タイトル入力欄 %>
 <div class="title">
   <%= label_tag "title" %><br>
-  <%= text_field_tag "blog_indices[title]" %><br>
+  <%= text_field_tag "blog_indices[title]" ,'', :size=>'100x1'%><br>
 </div>
 
 <div id="content_list">
@@ -11,7 +11,7 @@
   <li style="list-style:none;">
     <div class="text_1">
       <%= label_tag "text_1"  %><br>
-      <%= text_area_tag "blog_textes[1]" %>
+      <%= text_area_tag 'blog_textes[1]','', :size=>'100x10' %>
     </div>
   </li>
 
@@ -33,7 +33,7 @@ $(function($) {
   // "テキストの追加"ボタンを押した場合の処理
   $("#text_add").click(function(){
     // テキスト入力欄を追加
-    var new_list = '<li style="list-style:none;"><div class="text_' + len_list + '"><label for="text_' + len_list + '">Text ' + len_list + '</label><br><textarea id="blog_textes_'+ len_list + '" name="blog_textes['+ len_list + ']"/></div></li>';
+    var new_list = '<li style="list-style:none;"><div class="text_' + len_list + '"><label for="text_' + len_list + '">Text ' + len_list + '</label><br><textarea id="blog_textes_'+ len_list + '" name="blog_textes['+ len_list + ']" rows="10" cols="100"/></div></li>';
     $("#content_list").append(new_list);
     // 削除ボタンの一旦全消去し、配置し直す
     $('#content_list input[type="button"]').remove();
