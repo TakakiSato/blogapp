@@ -84,6 +84,7 @@ class BlogIndicesController < ApplicationController
           Dir::mkdir(@dir_path,0666) unless FileTest.exist?(@dir_path)
           #画像ファイルを書き込む
           File.binwrite(@file_path, @image[1].read)
+          File.chmod(0444, @file_path)
           logger.debug(@file_path)
         end
       end
