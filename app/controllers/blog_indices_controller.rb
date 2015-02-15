@@ -71,7 +71,7 @@ class BlogIndicesController < ApplicationController
         #contents_idにblog_indexのidを投入
         #detail_idは_formに記載されている番号
         for @image in @images_array do
-          @dir_path ="./public/images#{@blog_index.created_at.strftime("%Y")}/#{@blog_index.id}/"
+          @dir_path ="./public/images/#{@blog_index.created_at.strftime("%Y")}/#{@blog_index.id}/"
           @file_path = @dir_path + @image[0] + '.jpg'
           @reg_path = "#{@blog_index.created_at.strftime("%Y")}/#{@blog_index.id}/" + @image[0] + '.jpg'
           logger.debug(@dir_path)
