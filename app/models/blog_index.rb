@@ -27,7 +27,7 @@ class BlogIndex < ActiveRecord::Base
     from
     blog_indices
     order by
-    updated_at asc
+    updated_at desc
     limit 5) as INX
     on INX.id=IMG.contents_id)
     union
@@ -47,7 +47,7 @@ class BlogIndex < ActiveRecord::Base
     from
     blog_indices
     order by
-    updated_at asc
+    updated_at desc
     limit 5) as INX
     on INX.id=TXT.contents_id);
     ")
@@ -72,7 +72,7 @@ class BlogIndex < ActiveRecord::Base
     blog_indices
     where id = :id
     order by
-    updated_at asc
+    updated_at desc
     limit 5) as INX
     on INX.id=IMG.contents_id)
     union
@@ -93,7 +93,7 @@ class BlogIndex < ActiveRecord::Base
     blog_indices
     where id = :id
     order by
-    updated_at asc
+    updated_at desc
     limit 5) as INX
     on INX.id=TXT.contents_id);
     ",{:id=>id}])
