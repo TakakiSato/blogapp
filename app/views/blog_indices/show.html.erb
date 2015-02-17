@@ -20,7 +20,9 @@
       <%= image_tag @blog_id["#{num}"], class: "detail-img"%>
       <%#= @blog_id["#{num}"] %>
       <% else%>
+      <div class=autlink>
       <%= br(@blog_id["#{num}"])%>
+    </div>
       <% end %>
       <% end %>
       <% num=num+1%>

@@ -31,7 +31,9 @@
         <dd>
           <div id="sammay">
             <%= image_tag eval("@blog_id_#{blog_id}['min_img_path']"), class: "thumbnail-img"%>
+            <div class=autlink>
             <%= br(eval("@blog_id_#{blog_id}['blog_txt_all']")) %>
+          </div>
           </div>
         </dd>
       </dt>

@@ -8,7 +8,12 @@
   <%=csrf_meta_tags %>
   <script src="http://code.jquery.com/jquery.min.js"></script>
   <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
-
+  <meta property="og:title" content="ブログを作るブログ" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="http://blog-make-blog.com//" />
+  <meta property="og:image" content="http://blog-make-blog.com/assets/css/logo-e813a35eeb9b44e523f758c99dd784ae.png" />
+  <meta property="og:locale" content="ja_JP" />
+  <meta property="og:site_name" content="ブログを作るブログ" />
 </head>
 
 <body>
@@ -21,6 +26,8 @@
       <!-- current_user は現在ログインしているUserオブジェクトを返すdeviseのHelperメソッド -->
       <!-- *_path はUserモデルを作成したときに、
       deviseにより自動で作成されてますので、rake routesで確認できます -->
+
+      <div class="fb-like" data-href="http://blog-make-blog.com" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
       Logged in as <strong><%= current_blog_user.email %></strong>.
       <%= link_to 'プロフィール変更', edit_blog_user_registration_path %> |
       <%= link_to "ログアウト", destroy_blog_user_session_path, method: :delete %>
@@ -43,10 +50,12 @@
                 <br> 叱咤激励、バグ報告、お仕事のお話など頂ける...。そんな奇特な方がいらっしゃいましたら、大変お手数ですが、
                 <br>
                 <a href="https://twitter.com/Def_Drank" target="_blank">@Def_Drank</a> へお願いします。しっぽ振って喜びます。
+                <br>
+                <div class="fb-like" data-share="true" data-width="450" data-show-faces="true"></div>
+              </div>
               </dd>
             </dt>
           </dl>
-        </div>
         <br clear="all" class="clear" />
         <div id="wrapper">
           <p class="notice"><%= notice %></p>
@@ -56,5 +65,30 @@
       </div>
     </div>
   </body>
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '1384912455155923',
+        xfbml      : true,
+        version    : 'v2.2'
+      });
+    };
+
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "//connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+  </script>
+
+  <script type="text/javascript">
+      (function($) {
+          $(".autlink").each(function(){
+              $(this).html( $(this).html().replace(/((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g, '<a href="$1">$1</a> ') );
+          });
+      })(jQuery);
+  </script>
 
   </html>
