@@ -30,11 +30,11 @@ body {
 /*START---------application.html.erb---------------*/
 
 #container {
-  width: 95%;
+  width: 100%;
   margin: 0 auto;
 }
 #header {
-  width: 95%;
+  width: 100%;
   margin: 0 auto;
 }
 #headlist {
@@ -129,7 +129,17 @@ a:hover {
 
   clear: both;
   margin: 0 auto;
-  width: 95%;
+  width: 74%;
+  float: left;
+}
+
+#sns-line{
+  width: 25%;
+  float: right;
+}
+
+.fb-like-box{
+  width:100%; background-color:#ffffff;
 }
 /*----コンテンツ部分の中のミニタイトル部分--------*/
 

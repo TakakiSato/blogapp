@@ -9,7 +9,7 @@
   <script src="http://code.jquery.com/jquery.min.js"></script>
   <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
   <meta property="og:title" content="ブログを作るブログ" />
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content="article" />
   <meta property="og:url" content="http://blog-make-blog.com//" />
   <meta property="og:image" content="http://blog-make-blog.com/assets/css/logo-e813a35eeb9b44e523f758c99dd784ae.png" />
   <meta property="og:locale" content="ja_JP" />
@@ -17,10 +17,21 @@
   <meta property="og:image:width" content="100" />
   <meta property="og:image:height" content="50" />
   <meta property="og:description" content="勉強の一環でブログサイトを作ってみようという試み。構築のすったもんだを記事に書いていこうという魂胆。" />
+
 </head>
 
 <body>
+  <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&appId=1384912455155923&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
   <div id="container">
+
     <h1>ブログを作るブログ</h1>
     <!-- signed_in? はユーザがログインしているか調べるdeviseのHelperメソッド -->
     <div>
@@ -29,8 +40,13 @@
       <!-- current_user は現在ログインしているUserオブジェクトを返すdeviseのHelperメソッド -->
       <!-- *_path はUserモデルを作成したときに、
       deviseにより自動で作成されてますので、rake routesで確認できます -->
-
-      <div class="fb-like" data-href="http://blog-make-blog.com" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+      <!--twitter-botton-->
+      <div class="twitter-botton">
+        <a href="https://twitter.com/intent/tweet?button_hashtag=blogmakeblog" class="twitter-hashtag-button" data-lang="ja" data-size="large" data-url="http://blog-make-blog.com" data-dnt="true">Tweet #blogmakeblog</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+      </div>
+      <!--fb-botton-->
+      <div class="fb-like" data-href="http://blog-make-blog.com" data-width="800" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
       Logged in as <strong><%= current_blog_user.email %></strong>.
       <%= link_to 'プロフィール変更', edit_blog_user_registration_path %> |
       <%= link_to "ログアウト", destroy_blog_user_session_path, method: :delete %>
@@ -65,26 +81,16 @@
           <p class="alert"><%= alert %></p>
           <%=yield %>
         </div>
+        <!--twitter wight-->
+        <div id="sns-line">
+        <div id=twitter_wg>
+        <a class="twitter-timeline" href="https://twitter.com/hashtag/blogmakeblog" data-widget-id="569856207930683392">#blogmakeblog のツイート</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
       </div>
+      <div class="fb-like-box" data-href="https://www.facebook.com/bgmkbg" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="true" data-show-border="true"></div>
+        </div>
     </div>
   </body>
-  <script>
-    window.fbAsyncInit = function() {
-      FB.init({
-        appId      : '1384912455155923',
-        xfbml      : true,
-        version    : 'v2.2'
-      });
-    };
-
-    (function(d, s, id){
-       var js, fjs = d.getElementsByTagName(s)[0];
-       if (d.getElementById(id)) {return;}
-       js = d.createElement(s); js.id = id;
-       js.src = "//connect.facebook.net/en_US/sdk.js";
-       fjs.parentNode.insertBefore(js, fjs);
-     }(document, 'script', 'facebook-jssdk'));
-  </script>
 
   <script type="text/javascript">
       (function($) {
