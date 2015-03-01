@@ -123,12 +123,24 @@ a:hover {
   float: left;
 }
 
-#sns-line{
+.sns-line{
   float: right;
 }
 
+.twitter_wg{
+  width: 100%;
+}
 .fb-like-box{
+  width: 100%;
   background-color:#ffffff;
+}
+
+.twitter-botton{
+  display: inline-block;
+}
+
+.fb-like{
+  display: inline-block;
 }
 /*----コンテンツ部分の中のミニタイトル部分--------*/
 
@@ -271,13 +283,7 @@ ul, ol, li {
     width: 90%;
   }
 
-  #sns-line{
-    width: 100%;
-  }
-  #twitter_wg{
-    width: 100%;
-  }
-  #fb-like-box{
+  .sns-line{
     width: 100%;
   }
   .thumbnail-img {
@@ -303,7 +309,7 @@ ul, ol, li {
     width: 74%;
   }
 
-  #sns-line{
+  .sns-line{
     width: 25%;
   }
   .thumbnail-img {
