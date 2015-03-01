@@ -270,7 +270,7 @@ ul, ol, li {
 }
 
 /* タブレットとスマホに共通なスタイルはここ */
-@media screen and (max-width : 759px) {
+@media screen and (max-width : 1280px) {
   body {
     font-size: 10px;
     /*基本の文字サイズ-----------------*/
@@ -292,7 +292,7 @@ ul, ol, li {
 
           }
           /* PCのみのスタイルはここ */
-          @media screen and (min-width : 760px) {
+          @media screen and (min-width :1281px) {
             body {
               font-size: 12px;
               /*基本の文字サイズ-----------------*/
