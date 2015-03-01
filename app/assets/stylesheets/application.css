@@ -270,7 +270,7 @@ ul, ol, li {
 }
 
 /* タブレットとスマホに共通なスタイルはここ */
-@media screen and (min-width : 730px) {
+@media screen and (max-width : 759px) {
   body {
     font-size: 10px;
     /*基本の文字サイズ-----------------*/
