@@ -14,21 +14,19 @@
 *= require_self
 */
 
+/* スマートフォン、タブレット、PCに共通なスタイルはここ(@media宣言の外に書く) */
+
 body {
   background-color: #2A2823;
   /*全体の背景色-----------------*/
-
   font-family: Osaka, Verdana, Arial, Helvetica, sans-serif;
-  font-size: 12px;
-  /*基本の文字サイズ-----------------*/
-  line-height: 170%;
   color: #EAEAEA;
   /*基本の文字色-----------------*/
   background-image: url(css/128-149.jpg);
   background-repeat: repeat;
 }
-/*START---------application.html.erb---------------*/
 
+/*START---------application.html.erb---------------*/
 #container {
   width: 100%;
   margin: 0 auto;
@@ -41,29 +39,24 @@ body {
   border-radius: 20px;
   background-color: #e08000;
   /*----背景色--------*/
-
   border: #e06000 solid 1px;
   /*----外枠の線の色・種類・太さ--------*/
-
   clear: both;
   margin: 0 auto;
 }
-/*サイトのタイトル文字-----------------*/
 
+/*サイトのタイトル文字-----------------*/
 h2 {
   color: #343434;
   /*---文字色-----------*/
-
   display: block;
   clear: both;
 }
 #h2_img {
-  width: 60%;
   display: block;
   clear: both;
 }
 /*ページのタイトル部分のテキストリンク-----------------*/
-
 h2 a:link {
   text-decoration: none;
   color: #F7DB9E;
@@ -123,18 +116,14 @@ a:hover {
   border-radius: 20px;
   background-color: #55534F;
   /*----背景色--------*/
-
   border: #757472 solid 1px;
   /*----外枠の線の色・種類・太さ--------*/
-
   clear: both;
   margin: 0 auto;
-  width: 74%;
   float: left;
 }
 
 #sns-line{
-  width: 25%;
   float: right;
 }
 
@@ -207,12 +196,10 @@ h3 {
 }
 
 .thumbnail-img {
-  width: 40%;
   display: block;
   clear: both;
 }
 .detail-img {
-  width: 60%;
   display: block;
   clear: both;
 }
@@ -267,4 +254,56 @@ ul, ol, li {
 .text {
   margin: 2px 2px 30px 2px;
   line-height: 170%;
+}
+
+/* タブレットとスマホに共通なスタイルはここ */
+@media screen and (min-width : 480px) {
+  body {
+    font-size: 10px;
+    /*基本の文字サイズ-----------------*/
+    line-height: 100%;
+  }
+  #h2_img {
+    width: 100%;
+  }
+
+  #wrapper {
+    width: 100%;
+  }
+
+  #sns-line{
+    width: 100%;
+  }
+  .thumbnail-img {
+    width: 60%;
+  }
+  .detail-img {
+    width: 60%;
+  }
+
+}
+/* PCのみのスタイルはここ */
+@media screen and (min-width : 760px) {
+  body {
+    font-size: 12px;
+    /*基本の文字サイズ-----------------*/
+    line-height: 170%;
+  }
+  #h2_img {
+    width: 60%;
+  }
+
+  #wrapper {
+    width: 74%;
+  }
+
+  #sns-line{
+    width: 25%;
+  }
+  .thumbnail-img {
+    width: 40%;
+  }
+  .detail-img {
+    width: 60%;
+  }
 }

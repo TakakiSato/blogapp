@@ -3,8 +3,10 @@
 
 <head>
   <title>ブログを作るブログ</title>
-  <%=stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track'=> true %>
-  <%=javascript_include_tag 'application', 'data-turbolinks-track'=> true %>
+  <!--%=stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track'=> true %-->
+  <!--%=javascript_include_tag 'application', 'data-turbolinks-track'=> true %-->
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
   <%=csrf_meta_tags %>
   <script src="http://code.jquery.com/jquery.min.js"></script>
   <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
@@ -28,77 +30,73 @@
     js = d.createElement(s); js.id = id;
     js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&appId=1384912455155923&version=v2.0";
     fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
 
     <div id="container">
-
       <h1>ブログを作るブログ</h1>
       <!-- signed_in? はユーザがログインしているか調べるdeviseのHelperメソッド -->
-      <div>
-        <!-- signed_in? はユーザがログインしているか調べるdeviseのHelperメソッド -->
-        <% if signed_in? %>
-        <!-- current_user は現在ログインしているUserオブジェクトを返すdeviseのHelperメソッド -->
-        <!-- *_path はUserモデルを作成したときに、
-        deviseにより自動で作成されてますので、rake routesで確認できます -->
-        <!--twitter-botton-->
-        <div class="twitter-botton">
-          <a href="https://twitter.com/intent/tweet?button_hashtag=blogmakeblog" class="twitter-hashtag-button" data-lang="ja" data-size="large" data-url="http://blog-make-blog.com" data-dnt="true">Tweet #blogmakeblog</a>
-          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-          </div>
-          <!--fb-botton-->
-          <div class="fb-like" data-href="http://blog-make-blog.com" data-width="800" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
-          Logged in as <strong><%= current_blog_user.email %></strong>.
-          <%= link_to 'プロフィール変更', edit_blog_user_registration_path %> |
-          <%= link_to "ログアウト", destroy_blog_user_session_path, method: :delete %>
-          <% end %>
-          </div>
-          <div id="header">
-            <dl id="headlist">
-              <dt>
-                <dd>
-                  <h2>
-                    <a href="/blog_indices">
-                      <%=image_tag "css/logo.png",:id=>"h2_img" %></a>
-                      </h2>
-                      </dd>
-                      <dd>
-                        <div id="blog_description">
-                          プログラミングの勉強中の
-                          <a href="https://twitter.com/Def_Drank" target="_blank">@Def_Drank</a>です。
-                          <br> 勉強の一環でブログサイトを作ってみようという試み。構築のすったもんだを記事に書いていこうという魂胆。
-                          <br> 叱咤激励、バグ報告、お仕事のお話など頂ける...。そんな奇特な方がいらっしゃいましたら、大変お手数ですが、
-                          <br>
-                          <a href="https://twitter.com/Def_Drank" target="_blank">@Def_Drank</a> へお願いします。しっぽ振って喜びます。
-                          <br>
-                          <div class="fb-like" data-share="true" data-width="450" data-show-faces="true"></div>
+      <!-- signed_in? はユーザがログインしているか調べるdeviseのHelperメソッド -->
+      <% if signed_in? %>
+      <!-- current_user は現在ログインしているUserオブジェクトを返すdeviseのHelperメソッド -->
+      <!-- *_path はUserモデルを作成したときに、
+      deviseにより自動で作成されてますので、rake routesで確認できます -->
+      <!--twitter-botton-->
+      <div class="twitter-botton">
+        <a href="https://twitter.com/intent/tweet?button_hashtag=blogmakeblog" class="twitter-hashtag-button" data-lang="ja" data-size="large" data-url="http://blog-make-blog.com" data-dnt="true">Tweet #blogmakeblog</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        </div>
+        <!--fb-botton-->
+        <div class="fb-like" data-href="http://blog-make-blog.com" data-width="800" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+        Logged in as <strong><%= current_blog_user.email %></strong>.
+        <%= link_to 'プロフィール変更', edit_blog_user_registration_path %> |
+        <%= link_to "ログアウト", destroy_blog_user_session_path, method: :delete %>
+        <% end %>
+        <div id="header">
+          <dl id="headlist">
+            <dt>
+              <dd>
+                <h2>
+                  <a href="/blog_indices">
+                    <%=image_tag "css/logo.png",:id=>"h2_img" %></a>
+                    </h2>
+                    </dd>
+                    <dd>
+                      <div id="blog_description">
+                        プログラミングの勉強中の
+                        <a href="https://twitter.com/Def_Drank" target="_blank">@Def_Drank</a>です。
+                        <br> 勉強の一環でブログサイトを作ってみようという試み。構築のすったもんだを記事に書いていこうという魂胆。
+                        <br> 叱咤激励、バグ報告、お仕事のお話など頂ける...。そんな奇特な方がいらっしゃいましたら、大変お手数ですが、
+                        <br>
+                        <a href="https://twitter.com/Def_Drank" target="_blank">@Def_Drank</a> へお願いします。しっぽ振って喜びます。
+                        <br>
+                        <div class="fb-like" data-share="true" data-width="450" data-show-faces="true"></div>
+                        </div>
+                        </dd>
+                        </dt>
+                        </dl>
+                        <br clear="all" class="clear" />
+                        <div id="wrapper">
+                          <p class="notice"><%= notice %></p>
+                          <p class="alert"><%= alert %></p>
+                          <%=yield %>
                           </div>
-                          </dd>
-                          </dt>
-                          </dl>
-                          <br clear="all" class="clear" />
-                          <div id="wrapper">
-                            <p class="notice"><%= notice %></p>
-                            <p class="alert"><%= alert %></p>
-                            <%=yield %>
-                            </div>
-                            <!--twitter wight-->
-                            <div id="sns-line">
-                              <div id=twitter_wg>
-                                <a class="twitter-timeline" href="https://twitter.com/hashtag/blogmakeblog" data-widget-id="569856207930683392">#blogmakeblog のツイート</a>
-                                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-                                </div>
-                                <div class="fb-like-box" data-href="https://www.facebook.com/bgmkbg" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="true" data-show-border="true"></div>
-                                </div>
-                                </div>
-                                </body>
-
-
-                                <script type="text/javascript">
-                                (function($) {
-                                  $(".autlink").each(function(){
-                                    $(this).html( $(this).html().replace(/((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g, '<a href="$1">$1</a> ') );
-                                    });
-                                    })(jQuery);
-                                    </script>
-
-                                    </html>
+                          <!--twitter wight-->
+                          <div id="sns-line">
+                            <div id=twitter_wg>
+                              <a class="twitter-timeline" href="https://twitter.com/hashtag/blogmakeblog" data-widget-id="569856207930683392">#blogmakeblog のツイート</a>
+                              <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                              </div>
+                              <div class="fb-like-box" data-href="https://www.facebook.com/bgmkbg" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="true" data-show-border="true"></div>
+                              </div>
+                              </div>
+                              </div>
+                              </body>
+                              <script type="text/javascript">
+                              (function($) {
+                                $(".autlink").each(function(){
+                                  $(this).html( $(this).html().replace(/((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g, '<a href="$1">$1</a> ') );
+                                  });
+                                  })(jQuery);
+                                  </script>
+                                  </html>
