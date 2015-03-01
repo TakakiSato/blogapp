@@ -268,10 +268,16 @@ ul, ol, li {
   }
 
   #wrapper {
-    width: 100%;
+    width: 90%;
   }
 
   #sns-line{
+    width: 100%;
+  }
+  #twitter_wg{
+    width: 100%;
+  }
+  #fb-like-box{
     width: 100%;
   }
   .thumbnail-img {

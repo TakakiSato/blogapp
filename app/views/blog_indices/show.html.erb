@@ -1,7 +1,7 @@
 
 <div id=title>
   <% @blog_id = eval("@blog_id_#{params[:id]}")%>
-  <h1><%= @blog_id["title"] %></h1>
+  <h3><%= @blog_id["title"] %></h3>
 </div>
   <%#@blog_id_XXには以下が入っている。XXにはblog_idが入っている
   #{"max_content_num"=個記事と写真の総数(数字) "min_img_num"=最初の画像の記事内ID(数字),
