@@ -53,6 +53,7 @@ h2 {
   clear: both;
 }
 #h2_img {
+  width: 100%;
   display: block;
   clear: both;
 }
@@ -269,53 +270,46 @@ ul, ol, li {
 }
 
 /* タブレットとスマホに共通なスタイルはここ */
-@media screen and (min-width : 480px) {
+@media screen and (min-width : 730px) {
   body {
     font-size: 10px;
     /*基本の文字サイズ-----------------*/
     line-height: 100%;
-  }
-  #h2_img {
-    width: 100%;
-  }
+    }
+    #wrapper {
+      width: 90%;
+      }
 
-  #wrapper {
-    width: 90%;
-  }
+      .sns-line{
+        width: 100%;
+        }
+        .thumbnail-img {
+          width: 60%;
+          }
+          .detail-img {
+            width: 60%;
+            }
 
-  .sns-line{
-    width: 100%;
-  }
-  .thumbnail-img {
-    width: 60%;
-  }
-  .detail-img {
-    width: 60%;
-  }
+          }
+          /* PCのみのスタイルはここ */
+          @media screen and (min-width : 760px) {
+            body {
+              font-size: 12px;
+              /*基本の文字サイズ-----------------*/
+              line-height: 170%;
+              }
 
-}
-/* PCのみのスタイルはここ */
-@media screen and (min-width : 760px) {
-  body {
-    font-size: 12px;
-    /*基本の文字サイズ-----------------*/
-    line-height: 170%;
-  }
-  #h2_img {
-    width: 60%;
-  }
+              #wrapper {
+                width: 74%;
+                }
 
-  #wrapper {
-    width: 74%;
-  }
-
-  .sns-line{
-    width: 25%;
-  }
-  .thumbnail-img {
-    width: 40%;
-  }
-  .detail-img {
-    width: 60%;
-  }
-}
+                .sns-line{
+                  width: 25%;
+                  }
+                  .thumbnail-img {
+                    width: 40%;
+                    }
+                    .detail-img {
+                      width: 60%;
+                      }
+                    }
