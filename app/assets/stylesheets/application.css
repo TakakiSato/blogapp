@@ -1,315 +1,289 @@
 /*
-* This is a manifest file that'll be compiled into application.css, which will include all the files
-* listed below.
-*
-* Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
-* or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
-*
-* You're free to add application-wide styles to this file and they'll appear at the bottom of the
-* compiled file so the styles you add here take precedence over styles defined in any styles
-* defined in the other CSS/SCSS files in this directory. It is generally better to create a new
-* file per style scope.
-*
-*= require_tree .
-*= require_self
-*/
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
 
 /* スマートフォン、タブレット、PCに共通なスタイルはここ(@media宣言の外に書く) */
 
 body {
-  background-color: #2A2823;
-  /*全体の背景色-----------------*/
-  font-family: Osaka, Verdana, Arial, Helvetica, sans-serif;
-  color: #EAEAEA;
-  /*基本の文字色-----------------*/
-  background-image: url(css/128-149.jpg);
-  background-repeat: repeat;
+	background-color: #2A2823;
+	/*全体の背景色-----------------*/
+	font-family: Osaka, Verdana, Arial, Helvetica, sans-serif;
+	color: #EAEAEA;
+	/*基本の文字色-----------------*/
+	margin: 0 auto;
 }
 
 /*START---------application.html.erb---------------*/
 #container {
-  width: 100%;
-  margin: 0 auto;
+	width: 100%;
+	margin: 0 auto;
 }
 #header {
-  width: 100%;
-  margin: 0 auto;
+	width: 100%;
+	margin: 0 auto;
 }
 #headlist {
-  border-radius: 20px;
-  background-color: #e08000;
-  /*----背景色--------*/
-  border: #e06000 solid 1px;
-  /*----外枠の線の色・種類・太さ--------*/
-  clear: both;
-  margin: 0 auto;
+	background-color: #FF7F00;
+	/*----背景色--------*/
+	border: #e06000 solid 1px;
+	/*----外枠の線の色・種類・太さ--------*/
+	clear: both;
+	margin: 0 auto;
 }
 
 /*サイトのタイトル文字-----------------*/
 h2 {
-  color: #343434;
-  /*---文字色-----------*/
-  display: block;
-  clear: both;
+	color: #343434;
+	/*---文字色-----------*/
+	display: block;
+	clear: both;
 }
 #h2_img {
-  width: 100%;
-  display: block;
-  clear: both;
+	width: 100%;
+	display: block;
+	clear: both;
 }
+/*----コンテンツ部分の中のミニタイトル部分--------*/
+
+.aboutme,h3 {
+	font: bold 120% "メイリオ", Osaka, "ヒラギノ角ゴ Pro W3";
+	color: #F4BF4A;
+	/*----文字色--------*/
+	background-color: #2A2823;
+	/*----背景色--------*/
+	border-bottom: #E58702 solid 3px;
+	/*----背景色の下の線の色・線の種類・太さ--------*/
+}
+
 /*ページのタイトル部分のテキストリンク-----------------*/
-h2 a:link {
-  text-decoration: none;
-  color: #F7DB9E;
-}
-/*メニュー・テキストリンクの色*/
-
-h2 a:visited {
-  text-decoration: none;
-  color: #F7DB9E;
-}
-/*メニュー・訪問済みのリンクの色*/
-
-h2 a:active {
-  text-decoration: underline;
-  color: #F7DB9E;
-}
-/*メニュー・クリック時のリンクの色*/
-
-h2 a:hover {
-  text-decoration: underline;
-  color: F7DB9E;
-}
 /*メニュー・マウス上にカーソルがある時のリンク色*/
+/*メニューバー共通設定 start*/
+.menu {
+	width: 100%;
+}
+
+.aboutme, .twitter-botton, .fb-like {
+	display: inline-block;
+}
+
+/*メニューバー共通設定 end*/
+
 /*普通のテキストリンク-----------------*/
 
 a:link {
-  text-decoration: underline;
-  color: #F4BF4A;
+	text-decoration: underline;
+	color: #F4BF4A;
 }
 /*テキストリンクの色*/
 
 a:visited {
-  text-decoration: underline;
-  color: #F4BF4A;
+	text-decoration: underline;
+	color: #F4BF4A;
 }
 /*訪問済みのリンクの色*/
 
 a:active {
-  text-decoration: underline;
-  color: #F4BF4A;
+	text-decoration: underline;
+	color: #F4BF4A;
 }
 /*クリック時のリンクの色*/
 
 a:hover {
-  text-decoration: underline;
-  color: #F4BF4A;
+	text-decoration: underline;
+	color: #F4BF4A;
 }
 /*マウスの上にカーソルがあるときのリンクの色*/
 
 #blog_description {
-  font: bold 120% "メイリオ", Osaka, "ヒラギノ角ゴ Pro W3";
+	font: bold 120% "メイリオ", Osaka, "ヒラギノ角ゴ Pro W3";
+	margin: 0 auto;
 }
 /*END---------application.html.erb---------------*/
 /*START----blog_indices.html.erb----------------*/
 
 #wrapper {
-  border-radius: 20px;
-  background-color: #55534F;
-  /*----背景色--------*/
-  border: #757472 solid 1px;
-  /*----外枠の線の色・種類・太さ--------*/
-  clear: both;
-  margin: 0 auto;
-  float: left;
+	background-color: #55534F;
+	/*----背景色--------*/
+	border: #757472 solid 1px;
+	/*----外枠の線の色・種類・太さ--------*/
+	clear: both;
+	margin: 0 auto;
+	float: left;
 }
 
-.sns-line{
-  float: right;
+.sns-line {
+	float: right;
 }
 
-.twitter_wg{
-  width: 100%;
-}
-.fb-like-box{
-  width: 100%;
-  background-color:#ffffff;
+.fb-like-box, .twitter_wg {
+	width: 100%;
 }
 
-.twitter-botton{
-  display: inline-block;
+/*ボタン、リンクに関する設定*/
+.button, .aboutme {
+	display: inline-block;
+	width: 100%;
+	text-align: left;
+	text-decoration: none;
+	outline: none;
 }
-
-.fb-like{
-  display: inline-block;
+.button::before, .button::after, .aboutme::before, .aboutme::after {
+	position: absolute;
+	z-index: -1;
+	display: block;
+	content: '';
 }
-/*----コンテンツ部分の中のミニタイトル部分--------*/
-
-h3 {
-  font: bold 120% "メイリオ", Osaka, "ヒラギノ角ゴ Pro W3";
-  color: #F4BF4A;
-  /*----文字色--------*/
-  background-color: #2A2823;
-  /*----背景色--------*/
-  border-bottom: #E58702 solid 3px;
-  /*----背景色の下の線の色・線の種類・太さ--------*/
-}
-
-.button {
-  display: inline-block;
-  width: 100%;
-  text-align: left;
-  text-decoration: none;
-  outline: none;
-}
-.button::before,
-.button::after {
-  position: absolute;
-  z-index: -1;
-  display: block;
-  content: '';
-}
-.button,
-.button::before,
-.button::after {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-transition: all .3s;
-  transition: all .3s;
+.button::before, .button::after, .aboutme::before, .aboutme::after {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-transition: all .3s;
+	transition: all .3s;
 }
 
 /*button hobber*/
-.button {
-  position: relative;
-  z-index: 2;
-  border: 0px solid #333;
-  color: #333;
-  line-height: 50px;
-  perspective: 300px;
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;
+.button, .aboutme {
+	position: relative;
+	z-index: 2;
+	border: 0px solid #333;
+	color: #333;
+	line-height: 50px;
+	perspective: 300px;
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
 }
 
-.button:hover {
-  color: #2A2823;
+.button:hover, .aboutme:hover {
+	color: #2A2823;
 }
-.button::after {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  -webkit-transform: scale(.5);
-  transform: scale(.5);
+.button::after, .aboutme::after {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	-webkit-transform: scale(.5);
+	transform: scale(.5);
 }
-.button:hover::after {
-  background: #F4BF4A;
-  -webkit-transform: scale(1);
-  transform: scale(1);
+.button:hover::after, .aboutme:hover::after {
+	background: #F4BF4A;
+	-webkit-transform: scale(1);
+	transform: scale(1);
 }
 
 .thumbnail-img {
-  display: block;
-  clear: both;
+	display: block;
+	clear: both;
 }
 .detail-img {
-  display: block;
-  clear: both;
+	display: block;
+	clear: both;
 }
 #title {
-  font: bold 200% "メイリオ", Osaka, "ヒラギノ角ゴ Pro W3";
+	font: bold 200% "メイリオ", Osaka, "ヒラギノ角ゴ Pro W3";
 }
 #sammay {
-  font: bold 150% "メイリオ", Osaka, "ヒラギノ角ゴ Pro W3";
+	font: bold 150% "メイリオ", Osaka, "ヒラギノ角ゴ Pro W3";
 }
 /*------------------------------------*/
 /*pタグ空白消去*/
 
 p {
-  margin: 0px;
-  padding: 0px;
+	margin: 0px;
+	padding: 0px;
 }
 /*IMGボーダー非表示*/
 
 img {
-  border: none;
-  vertical-align: top;
+	border: none;
+	vertical-align: top;
 }
 /*TABLEボーダー非表示*/
 
 table {
-  border: none;
+	border: none;
 }
 /*IE--BRバグ回避*/
 
 br {
-  letter-spacing: normal;
+	letter-spacing: normal;
 }
 /*ビルダー表示崩れ回避*/
 
 br.clear {
-  clear: both;
-  padding: 0px;
-  margin: 0px;
-  height: 0px;
-  line-height: 0;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	height: 0px;
+	line-height: 0;
 }
 /*リスト空白消去*/
 
 ul, ol, li {
-  margin: 0px;
-  padding: 0px;
-  list-style: none;
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
 }
 .contents {
-  margin: 0px 12px 20px 12px;
+	margin: 0px auto;
 }
 .text {
-  margin: 2px 2px 30px 2px;
-  line-height: 170%;
+	margin: 0px auto;
 }
 
 /* タブレットとスマホに共通なスタイルはここ */
-@media screen and (max-width : 1280px) {
-  body {
-    font-size: 10px;
-    /*基本の文字サイズ-----------------*/
-    line-height: 100%;
-    }
-    #wrapper {
-      width: 90%;
-      }
+@media screen and (max-width: 1000px) {
+	body {
+		font-size: 15px;
+		/*基本の文字サイズ-----------------*/
+		line-height: 100%;
+	}
 
-      .sns-line{
-        width: 100%;
-        }
-        .thumbnail-img {
-          width: 60%;
-          }
-          .detail-img {
-            width: 60%;
-            }
+	#wrapper {
+		width: 100%;
+		margin: 0 auto;
+	}
 
-          }
-          /* PCのみのスタイルはここ */
-          @media screen and (min-width :1281px) {
-            body {
-              font-size: 12px;
-              /*基本の文字サイズ-----------------*/
-              line-height: 170%;
-              }
+	.sns-line {
+		width: 100%;
+	}
+	.thumbnail-img {
+		width: 60%;
+	}
+	.detail-img {
+		width: 60%;
+	}
 
-              #wrapper {
-                width: 74%;
-                }
+}
+/* PCのみのスタイルはここ */
+@media screen and (min-width: 1001px) {
+	body {
+		font-size: 12px;
+		/*基本の文字サイズ-----------------*/
+		line-height: 170%;
+	}
+	#wrapper {
+		width: 74%;
+	}
 
-                .sns-line{
-                  width: 25%;
-                  }
-                  .thumbnail-img {
-                    width: 40%;
-                    }
-                    .detail-img {
-                      width: 60%;
-                      }
-                    }
+	.sns-line {
+		width: 25%;
+	}
+	.thumbnail-img {
+		width: 40%;
+	}
+	.detail-img {
+		width: 60%;
+	}
+}
