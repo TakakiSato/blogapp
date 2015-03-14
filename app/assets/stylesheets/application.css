@@ -54,13 +54,15 @@ h2 {
 	width: 100%;
 	display: block;
 	clear: both;
+		margin: 0 auto;
+
 }
 /*----コンテンツ部分の中のミニタイトル部分--------*/
 
 .aboutme,h3 {
 	font: bold 120% "メイリオ", Osaka, "ヒラギノ角ゴ Pro W3";
 	color: #F4BF4A;
-	/*----文字色--------*/
+	/*----文字色-0-------*/
 	background-color: #2A2823;
 	/*----背景色--------*/
 	border-bottom: #E58702 solid 3px;
@@ -127,7 +129,7 @@ a:hover {
 	float: right;
 }
 
-.fb-like-box, .twitter_wg {
+.fb-like-box,.fb-comments, .twitter_wg {
 	width: 100%;
 }
 
@@ -196,6 +198,22 @@ a:hover {
 #sammay {
 	font: bold 150% "メイリオ", Osaka, "ヒラギノ角ゴ Pro W3";
 }
+
+
+/*-form.html.erb-----------------------*/
+.input {
+	width: 50%;
+	border: 3px double #bfbfbf	; 
+}
+#preview {
+	width: 49%;
+	border: 1px solid #000000; 	
+}
+
+/*------------------------------------*/
+
+
+
 /*------------------------------------*/
 /*pタグ空白消去*/
 

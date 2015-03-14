@@ -9,7 +9,7 @@
   <tbody>
     <font face="メイリオ"/>
     <dl id="acMenu">
-      <%#記事一覧表示処理 %>
+      <!--記事一覧表示処理 -->
       <% @blog_id_array.each do |blog_id| %>
       <dt>
         <hr>
@@ -32,16 +32,15 @@
           <div id="sammay">
             <%= image_tag eval("@blog_id_#{blog_id}['min_img_path']"), class: "thumbnail-img"%>
             <div class=autlink>
-            <%= br(eval("@blog_id_#{blog_id}['blog_txt_all']")) %>
+            <%= br(eval("@blog_id_#{blog_id}['blog_txt_all'].html_safe")) %>
           </div>
           </div>
         </dd>
       </dt>
-      <br clear="left">
       <% end %>
     </dl>
-    <%#記事一覧表示処理ここまで %>
-    <%#= link_to '新規投稿', new_blog_index_path, :id =>'new_blog_index' %>
+    <!--記事一覧表示処理ここまで -->
+    <!-- link_to '新規投稿', new_blog_index_path, :id =>'new_blog_index' -->
     <br>
   </tbody>
 </table>

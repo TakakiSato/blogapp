@@ -3,31 +3,32 @@
   <% @blog_id = eval("@blog_id_#{params[:id]}")%>
   <h3><%= @blog_id["title"] %></h3>
 </div>
-  <%#@blog_id_XXには以下が入っている。XXにはblog_idが入っている
+  <!--@blog_id_XXには以下が入っている。XXにはblog_idが入っている
   #{"max_content_num"=個記事と写真の総数(数字) "min_img_num"=最初の画像の記事内ID(数字),
   #"id"=>記事ID(数字), "created_at"=>日付, "updated_at"=>日付, "title"=>"タイトル(文字列)",
   #記事内ID=>コンテンツ(画像へのパスか、記事のそのもの)※記事内ID分繰り返し,
   #"blog_txt_all"=>indexに表示させる記事 記事最初の100文字(文字列),
-  #"min_img_path"=>"indexに表示させる画像のパス"}%>
+  #"min_img_path"=>"indexに表示させる画像のパス"}-->
 <div id=sammay>
   <dt>
     <dd>
       <% num=1%>
       <% while num <= @blog_id["max_content_num"] do %>
       <% if @blog_id["#{num}"].present? %>
-      <%##コンテンツが画像のパスかを判断。パスの場合イメージタグを作成 %>
+      <!--コンテンツが画像のパスかを判断。パスの場合イメージタグを作成 -->
       <% if /\/*\/*.jpg/ =~ @blog_id["#{num}"] %>
       <%= image_tag @blog_id["#{num}"], class: "detail-img"%>
-      <%#= @blog_id["#{num}"] %>
+      <!-- @blog_id["#{num}"] -->
       <% else%>
       <div class=autlink>
-      <%= br(@blog_id["#{num}"])%>
+      <%= br(@blog_id["#{num}"].html_safe) %>
     </div>
+    
       <% end %>
       <% end %>
       <% num=num+1%>
       <% end %>
-      <%# if /\/*\/*.jpg/ =~ "2014/14/aaa.jpg" %>
+      <!-- if /\/*\/*.jpg/ =~ "2014/14/aaa.jpg" -->
 
       <%# end %>
     </dd>

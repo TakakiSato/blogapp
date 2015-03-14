@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  match 'blog_indices/aboutme' , :via => :get
+
   devise_for :blog_users
   resources :blog_indices
   root to: 'blog_indices#index'

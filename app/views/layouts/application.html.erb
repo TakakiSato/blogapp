@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<title>ブログを作るブログ</title>
 		<!--%=stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track'=> true %-->
@@ -10,6 +9,8 @@
 		<%= csrf_meta_tags %>
 		<script src="http://code.jquery.com/jquery.min.js"></script>
 		<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+		<script src="//code.jquery.com/jquery-1.10.1.min.js"></script>
+		<script src="//dl.dropboxusercontent.com/u/149708/jQuery.iPreview/src/jquery.iPreview.min.js"></script>
 		<meta property="og:title" content="ブログを作るブログ" />
 		<meta property="og:type" content="article" />
 		<meta property="og:url" content="http://blog-make-blog.com//" />
@@ -37,6 +38,16 @@
 			ga('send', 'pageview');
 
 		</script>
+		<!--Shintaxhighlighter設定-->
+		<link type="text/css" rel="stylesheet" href="/styles/shCore.css"/>
+		<link type="text/css" rel="Stylesheet" href="/styles/shThemeDefault.css" />
+		<script type="text/javascript" src="/scripts/XRegExp.js"></script>
+		<script type="text/javascript" src="/scripts/shCore.js"></script>
+		<script type="text/javascript" src="/scripts/shAutoloader.js"></script>
+		<script type="text/javascript" src="/scripts/shBrshCss.js"></script>
+		<script type="text/javascript" src="/scripts/shBrushJScript.js"></script>
+		<script type="text/javascript" src="/scripts/shBrushRuby.js"></script>
+		<script type="text/javascript" src="/scripts/shBrushSql.js"></script>
 	</head>
 
 	<body>
@@ -74,6 +85,7 @@
 							<h2><a href="/blog_indices"> <%= image_tag "css/logo.jpg",:id=>"h2_img" %></a></h2>
 						</dd>
 					</dt>
+
 					<div class="twitter-botton">
 						<a href="https://twitter.com/intent/tweet?button_hashtag=blogmakeblog" class="twitter-hashtag-button" data-lang="ja" data-size="large" data-url="http://blog-make-blog.com" data-dnt="true">Tweet #blogmakeblog</a>
 						<script>
@@ -91,13 +103,12 @@
 						</script>
 					</div>
 					<!--fb-botton-->
-					<div class="fb-like" data-href="http://blog-make-blog.com" data-width="800" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
-
+					<div class="fb-like" data-href="http://blog-make-blog.com" data-width="400" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
 				</dl>
 				<div id="blog_description">
 					<div cllass="menu">
 						<div class="aboutme">
-							BLOG MAKE BLOGとDef_Drankについて
+							<a href="/blog_indices/aboutme"> BLOG MAKE BLOGとDef_Drankについて</a>
 						</div>
 					</div>
 				</div>
@@ -110,6 +121,9 @@
 						<%= alert %>
 					</p>
 					<%= yield %>
+					<hr>
+					<!--fb-comment-->
+					<div class="fb-comments" data-href="http://blog-make-blog.com" data-width="700" data-numposts="5" data-colorscheme="light"></div>
 				</div>
 				<!--twitter wight-->
 				<div class="sns-line">
@@ -129,7 +143,6 @@
 							}(document, "script", "twitter-wjs");
 						</script>
 					</div>
-					<div class="fb-like-box" data-href="https://www.facebook.com/bgmkbg" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="true" data-show-border="true"></div>
 				</div>
 			</div>
 		</div>
@@ -140,5 +153,10 @@
 				$(this).html($(this).html().replace(/((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g, '<a href="$1">$1</a> '));
 			});
 		})(jQuery);
+	</script>
+	<!--Syntaxhihighlighter-->
+	<script type="text/javascript">
+		SyntaxHighlighter.autoloader('cpp c ../scripts/shBrushCpp.js', 'js jscript javascript	../scripts/shBrushJScript.js', 'ruby rails ror rb		../scripts/shBrushRuby.js', 'sql					../scripts/shBrushSql.js');
+		SyntaxHighlighter.all();
 	</script>
 </html>
