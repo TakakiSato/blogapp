@@ -68,3 +68,7 @@ gem 'devise'
 
 gem 'jquery-turbolinks'
 end
+
+gem 'rb-readline'
+
+gem "railroady"

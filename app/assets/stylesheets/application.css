@@ -17,137 +17,72 @@
 /* スマートフォン、タブレット、PCに共通なスタイルはここ(@media宣言の外に書く) */
 
 body {
-	background-color: #2A2823;
+	background-color: #E5E5E5;
 	/*全体の背景色-----------------*/
-	font-family: Osaka, Verdana, Arial, Helvetica, sans-serif;
-	color: #EAEAEA;
+	font-family: 'Lucida Grande',
+	'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3',
+	Meiryo, メイリオ, sans-serif;
+	color: #666666;
 	/*基本の文字色-----------------*/
 	margin: 0 auto;
 }
 
 /*START---------application.html.erb---------------*/
-#container {
-	width: 100%;
-	margin: 0 auto;
-}
-#header {
-	width: 100%;
-	margin: 0 auto;
-}
-#headlist {
-	background-color: #FF7F00;
-	/*----背景色--------*/
-	border: #e06000 solid 1px;
-	/*----外枠の線の色・種類・太さ--------*/
-	clear: both;
-	margin: 0 auto;
-}
-
 /*サイトのタイトル文字-----------------*/
-h2 {
-	color: #343434;
-	/*---文字色-----------*/
-	display: block;
-	clear: both;
+#logo {
+	position: relative;
 }
-#h2_img {
+
+bxslider {    
+	#666666;
+}
+#logo_image {
+	width: 90%;
+	height: 90%;
+	position: absolute;
+	top: 10px;
+	left: 0px; /* Horizontally centered. */
+}
+
+#snsmenu {
+	position: absolute;
+	top: 10px;
+	left: 10px; /* Horizontally centered. */
+	overflow: hidden;
+}
+
+#menubar {
+	position: absolute;
+	bottom: 0px;
+	overflow: hidden;
 	width: 100%;
-	display: block;
-	clear: both;
-		margin: 0 auto;
-
-}
-/*----コンテンツ部分の中のミニタイトル部分--------*/
-
-.aboutme,h3 {
-	font: bold 120% "メイリオ", Osaka, "ヒラギノ角ゴ Pro W3";
-	color: #F4BF4A;
-	/*----文字色-0-------*/
-	background-color: #2A2823;
-	/*----背景色--------*/
-	border-bottom: #E58702 solid 3px;
-	/*----背景色の下の線の色・線の種類・太さ--------*/
+	height: 30px;
+	background-color: #666666;
+	opacity: 0.9;
 }
 
-/*ページのタイトル部分のテキストリンク-----------------*/
-/*メニュー・マウス上にカーソルがある時のリンク色*/
-/*メニューバー共通設定 start*/
-.menu {
-	width: 100%;
-}
-
-.aboutme, .twitter-botton, .fb-like {
-	display: inline-block;
-}
-
-/*メニューバー共通設定 end*/
-
-/*普通のテキストリンク-----------------*/
-
-a:link {
-	text-decoration: underline;
-	color: #F4BF4A;
-}
-/*テキストリンクの色*/
-
-a:visited {
-	text-decoration: underline;
-	color: #F4BF4A;
-}
-/*訪問済みのリンクの色*/
-
-a:active {
-	text-decoration: underline;
-	color: #F4BF4A;
-}
-/*クリック時のリンクの色*/
-
-a:hover {
-	text-decoration: underline;
-	color: #F4BF4A;
-}
-/*マウスの上にカーソルがあるときのリンクの色*/
-
-#blog_description {
-	font: bold 120% "メイリオ", Osaka, "ヒラギノ角ゴ Pro W3";
-	margin: 0 auto;
-}
-/*END---------application.html.erb---------------*/
-/*START----blog_indices.html.erb----------------*/
-
-#wrapper {
-	background-color: #55534F;
-	/*----背景色--------*/
-	border: #757472 solid 1px;
-	/*----外枠の線の色・種類・太さ--------*/
-	clear: both;
-	margin: 0 auto;
+#snsmenu li, #menubar li {
 	float: left;
+	margin-right: 0px;
 }
 
-.sns-line {
-	float: right;
+#menubar a {
+	color: #ffffff;
 }
 
-.fb-like-box,.fb-comments, .twitter_wg {
-	width: 100%;
+#menubar a:hover {
+	background-color: #ffffff;
+	border-color: #DF212C;
+	color: #DF212C;
 }
 
-/*ボタン、リンクに関する設定*/
-.button, .aboutme {
-	display: inline-block;
-	width: 100%;
-	text-align: left;
-	text-decoration: none;
-	outline: none;
-}
-.button::before, .button::after, .aboutme::before, .aboutme::after {
+.menubutton::before, .menubutton::after, .showlink::before, .showlink::after {
 	position: absolute;
 	z-index: -1;
 	display: block;
 	content: '';
 }
-.button::before, .button::after, .aboutme::before, .aboutme::after {
+.menubutton, .menubutton::before, .menubutton::after, .showlink, .showlink::before, .showlink::after {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
@@ -155,33 +90,64 @@ a:hover {
 	transition: all .3s;
 }
 
-/*button hobber*/
-.button, .aboutme {
-	position: relative;
-	z-index: 2;
-	border: 0px solid #333;
-	color: #333;
-	line-height: 50px;
-	perspective: 300px;
-	-webkit-transform-style: preserve-3d;
-	transform-style: preserve-3d;
+.menubutton {
+	display: inline-block;
+	width: 200px;
+	height: 30px;
+	text-align: center;
+	text-decoration: none;
+	line-height: 30px;
+	outline: none;
+	background-color: #666666;
+	border: 2px solid #666666;
+	opacity: 0.9;
 }
 
-.button:hover, .aboutme:hover {
-	color: #2A2823;
-}
-.button::after, .aboutme::after {
-	top: 0;
-	left: 0;
+.showlink {
+	display: inline-block;
 	width: 100%;
 	height: 100%;
-	-webkit-transform: scale(.5);
-	transform: scale(.5);
+	text-align: left;
+	outline: none;
+	background-color: #ffffff;
+	border: 2px solid #666666;
+	color: #ffffff;
+	opacity: 0.9;
+	text-decoration: none;
+	margin: 0;
 }
-.button:hover::after, .aboutme:hover::after {
-	background: #F4BF4A;
-	-webkit-transform: scale(1);
-	transform: scale(1);
+
+.showlink:hover {
+	background-color: #FE4647;
+	border-color: #DF212C;
+	color: #ffffff;
+}
+
+/*----コンテンツ部分の中のミニタイトル部分--------*/
+
+h1 {
+	font: bold 120%;
+	color: #666666;
+	border-bottom: #DF212C solid 10px;
+}
+
+#wrapper {
+	/*----背景色--------*/
+	border: #757472 solid 1px;
+	/*----外枠の線の色・種類・太さ--------*/
+	clear: both;
+	margin: 0 auto;
+	float: left;
+	display: inline-block;
+	margin: 0;
+}
+
+.sns-line {
+	float: right;
+}
+
+.fb-like-box, .fb-comments, .twitter_wg {
+	width: 100%;
 }
 
 .thumbnail-img {
@@ -192,29 +158,31 @@ a:hover {
 	display: block;
 	clear: both;
 }
-#title {
-	font: bold 200% "メイリオ", Osaka, "ヒラギノ角ゴ Pro W3";
-}
-#sammay {
-	font: bold 150% "メイリオ", Osaka, "ヒラギノ角ゴ Pro W3";
-}
 
+/*index.html.erb-----------------------*/
+.sammary_image {
+	width: 50%;
+	height: 50%;
+}
 
 /*-form.html.erb-----------------------*/
 .input {
-	width: 50%;
-	border: 3px double #bfbfbf	; 
+	width: 49%;
+	border: 3px double #bfbfbf;
 }
 #preview {
 	width: 49%;
-	border: 1px solid #000000; 	
+	border: 1px solid #000000;
 }
 
-/*------------------------------------*/
+#blog_title {
+	width: 90%;
+}
 
-
-
-/*------------------------------------*/
+#blog_texts_0 {
+	width: 90%;
+	height: 300px;
+}
 /*pタグ空白消去*/
 
 p {
@@ -226,6 +194,8 @@ p {
 img {
 	border: none;
 	vertical-align: top;
+	width: 90%;
+	height: 90%;
 }
 /*TABLEボーダー非表示*/
 
@@ -249,8 +219,8 @@ br.clear {
 /*リスト空白消去*/
 
 ul, ol, li {
-	margin: 0px;
 	padding: 0px;
+	margin: 0px;
 	list-style: none;
 }
 .contents {
@@ -263,7 +233,6 @@ ul, ol, li {
 /* タブレットとスマホに共通なスタイルはここ */
 @media screen and (max-width: 1000px) {
 	body {
-		font-size: 15px;
 		/*基本の文字サイズ-----------------*/
 		line-height: 100%;
 	}
@@ -281,6 +250,12 @@ ul, ol, li {
 	}
 	.detail-img {
 		width: 60%;
+	}
+	.title {
+		font-size: 40px;
+	}
+	.sammary_text {
+		font-size: 20px;
 	}
 
 }

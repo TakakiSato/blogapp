@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<!--<LINK REL="SHORTCUT ICON" HREF="favicon.ico">-->
 		<title>ブログを作るブログ</title>
-		<!--%=stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track'=> true %-->
-		<!--%=javascript_include_tag 'application', 'data-turbolinks-track'=> true %-->
 		<%= stylesheet_link_tag    "application", media: "all" %>
 		<%= javascript_include_tag "application" %>
 		<%= csrf_meta_tags %>
+		<!-- jQuery library (served from Google) -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
 		<script src="http://code.jquery.com/jquery.min.js"></script>
 		<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
 		<script src="//code.jquery.com/jquery-1.10.1.min.js"></script>
@@ -20,6 +22,24 @@
 		<meta property="og:image:width" content="100" />
 		<meta property="og:image:height" content="50" />
 		<meta property="og:description" content="勉強の一環でブログサイトを作ってみようという試み。構築のすったもんだを記事に書いていこうという魂胆。" />
+		<!--Shintaxhighlighter設定-->
+		<link type="text/css" rel="stylesheet" href="/styles/shCore.css"/>
+		<link type="text/css" rel="Stylesheet" href="/styles/shThemeDefault.css" />
+		<!-- #%<script type="text/javascript" src="/scripts/XRegExp.js"></script>-->
+		<script type="text/javascript" src="/scripts/shCore.js"></script>
+		<script type="text/javascript" src="/scripts/shAutoloader.js"></script>
+		<!-- #<script type="text/javascript" src="/scripts/shBrshCss.js"></script>-->
+		<script type="text/javascript" src="/scripts/shBrushJScript.js"></script>
+		<script type="text/javascript" src="/scripts/shBrushRuby.js"></script>
+		<script type="text/javascript" src="/scripts/shBrushSql.js"></script>
+		<!--bsslider設定  ロゴ箇所のスライドショー-->
+		<!-- bxSlider Javascript file -->
+		<script type="text/javascript" src="/scripts/jquery.bxslider.min.js"></script>
+		<!-- bxSlider CSS file -->
+		<link type="text/css" rel="Stylesheet" href="/styles/jquery.bxslider.css" />
+		<!-- jQuery Form Plugin-->
+		<%= javascript_include_tag "http://malsup.github.com/jquery.form.js", 'data-turbolinks-track' => true %>
+
 		<script>
 			(function(i, s, o, g, r, a, m) {
 				i['GoogleAnalyticsObject'] = r;
@@ -33,21 +53,9 @@
 				a.src = g;
 				m.parentNode.insertBefore(a, m)
 			})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
 			ga('create', 'UA-60735716-1', 'auto');
 			ga('send', 'pageview');
-
 		</script>
-		<!--Shintaxhighlighter設定-->
-		<link type="text/css" rel="stylesheet" href="/styles/shCore.css"/>
-		<link type="text/css" rel="Stylesheet" href="/styles/shThemeDefault.css" />
-		<script type="text/javascript" src="/scripts/XRegExp.js"></script>
-		<script type="text/javascript" src="/scripts/shCore.js"></script>
-		<script type="text/javascript" src="/scripts/shAutoloader.js"></script>
-		<script type="text/javascript" src="/scripts/shBrshCss.js"></script>
-		<script type="text/javascript" src="/scripts/shBrushJScript.js"></script>
-		<script type="text/javascript" src="/scripts/shBrushRuby.js"></script>
-		<script type="text/javascript" src="/scripts/shBrushSql.js"></script>
 	</head>
 
 	<body>
@@ -65,29 +73,60 @@
 				}(document, 'script', 'facebook-jssdk'));
 		</script>
 
-		<div id="container">
-			<h1>ブログを作るブログ</h1>
-			<!-- signed_in? はユーザがログインしているか調べるdeviseのHelperメソッド -->
-			<!-- signed_in? はユーザがログインしているか調べるdeviseのHelperメソッド -->
-			<% if signed_in? %>
-			<!-- current_user は現在ログインしているUserオブジェクトを返すdeviseのHelperメソッド -->
-			<!-- *_path はUserモデルを作成したときに、
-			deviseにより自動で作成されてますので、rake routesで確認できます -->
-			<!--twitter-botton-->
-			Logged in as <strong><%= current_blog_user.email %></strong>.
-			<%= link_to 'プロフィール変更', edit_blog_user_registration_path %> |
-			<%= link_to "ログアウト", destroy_blog_user_session_path, method: :delete %>
-			<% end %>
-			<div id="header">
-				<dl id="headlist">
-					<dt>
-						<dd>
-							<h2><a href="/blog_indices"> <%= image_tag "css/logo.jpg",:id=>"h2_img" %></a></h2>
-						</dd>
-					</dt>
+		<h1>ブログを作るブログ</h1>
+		<!-- signed_in? はユーザがログインしているか調べるdeviseのHelperメソッド -->
+		<% if signed_in? %>
+		<!-- current_user は現在ログインしているUserオブジェクトを返すdeviseのHelperメソッド -->
+		<!-- *_path はUserモデルを作成したときに、
+		deviseにより自動で作成されてますので、rake routesで確認できます -->
+		Logged in as <strong><%= current_user.email %></strong>.
+		<%= link_to 'プロフィール変更', edit_user_registration_path %> |
+		<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+		<% end %>
+
+		<div id=logo>
+			<!--ロゴ箇所用スライドショー -->
+			<div id=slide>
+				<ul class="bxslider">
+					<li>
+						<%= image_tag "Top/1.jpg" %>
+					</li>
+					<li>
+						<%= image_tag "Top/2.jpg" %>
+					</li>
+					<li>
+						<%= image_tag "Top/3.jpg" %>
+					</li>
+					<li>
+						<%= image_tag "Top/4.jpg" %>
+					</li>
+					<li>
+						<%= image_tag "Top/5.jpg" %>
+					</li>
+					<li>
+						<%= image_tag "Top/6.jpg" %>
+					</li>
+					<li>
+						<%= image_tag "Top/7.jpg" %>
+					</li>
+					<li>
+						<%= image_tag "Top/8.jpg" %>
+					</li>
+					<li>
+						<%= image_tag "Top/9.jpg" %>
+					</li>
+				</ul>
+			</div>
+			<div id=logo_image>
+				<a href="/blog_indices"> <%= image_tag "css/logo.png",:class=>"logo_img" %></a>
+			</div>
+
+			<ul id=snsmenu>
+				<li>
+					<!--twitter用ボタンー -->
 
 					<div class="twitter-botton">
-						<a href="https://twitter.com/intent/tweet?button_hashtag=blogmakeblog" class="twitter-hashtag-button" data-lang="ja" data-size="large" data-url="http://blog-make-blog.com" data-dnt="true">Tweet #blogmakeblog</a>
+						<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://blog-make-blog.com" data-via="Def_Drank" data-lang="ja" data-size="large" data-hashtags="blogmakeblog">ツイート</a>
 						<script>
 							! function(d, s, id) {
 								var js,
@@ -102,50 +141,55 @@
 							}(document, 'script', 'twitter-wjs');
 						</script>
 					</div>
+				</li>
+				<li>
 					<!--fb-botton-->
-					<div class="fb-like" data-href="http://blog-make-blog.com" data-width="400" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
-				</dl>
-				<div id="blog_description">
-					<div cllass="menu">
-						<div class="aboutme">
-							<a href="/blog_indices/aboutme"> BLOG MAKE BLOGとDef_Drankについて</a>
-						</div>
-					</div>
-				</div>
+					<div class="fb-like" data-href="http://blog-make-blog.com/" data-width="100" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+				</li>
+			</ul>
+			<ul id="menubar">
+				<li>
+					<a class="menubutton" href="/blog_indices/aboutme">About Me</a>
+				</li>
+				<li>
+					<a class="menubutton" href="#"> Under Construction </a>
+				</li>
+				<li>
+					<a class="menubutton" href="#"> Under Construction </a>
+				</li>
+			</ul>
+		</div>
 
-				<div id="wrapper">
-					<p class="notice">
-						<%= notice %>
-					</p>
-					<p class="alert">
-						<%= alert %>
-					</p>
-					<%= yield %>
-					<hr>
-					<!--fb-comment-->
-					<div class="fb-comments" data-href="http://blog-make-blog.com" data-width="600" data-numposts="5" data-colorscheme="light"></div>
-				</div>
-				<!--twitter wight-->
-				<div class="sns-line">
-					<div id=twitter_wg>
-						<a class="twitter-timeline" href="https://twitter.com/hashtag/blogmakeblog" data-widget-id="569856207930683392">#blogmakeblog のツイート</a>
-						<script>
-							! function(d, s, id) {
-								var js,
-								    fjs = d.getElementsByTagName(s)[0],
-								    p = /^http:/.test(d.location) ? 'http' : 'https';
-								if (!d.getElementById(id)) {
-									js = d.createElement(s);
-									js.id = id;
-									js.src = p + "://platform.twitter.com/widgets.js";
-									fjs.parentNode.insertBefore(js, fjs);
-								}
-							}(document, "script", "twitter-wjs");
-						</script>
-					</div>
-				</div>
+		<ul id="wrapper">
+			<p class="notice">
+				<%= notice %>
+			</p>
+			<p class="alert">
+				<%= alert %>
+			</p>
+			<%= yield %>
+		</ul>
+		<!--twitter wight-->
+		<div class="sns-line">
+			<div id=twitter_wg>
+				<a class="twitter-timeline" href="https://twitter.com/hashtag/blogmakeblog" data-widget-id="569856207930683392">#blogmakeblog のツイート</a>
+				<script>
+					! function(d, s, id) {
+						var js,
+						    fjs = d.getElementsByTagName(s)[0],
+						    p = /^http:/.test(d.location) ? 'http' : 'https';
+						if (!d.getElementById(id)) {
+							js = d.createElement(s);
+							js.id = id;
+							js.src = p + "://platform.twitter.com/widgets.js";
+							fjs.parentNode.insertBefore(js, fjs);
+						}
+					}(document, "script", "twitter-wjs");
+				</script>
 			</div>
 		</div>
+		<!--fb-comment-->
+		<div class="fb-comments" data-href="http://blog-make-blog.com" data-width="600" data-numposts="5" data-colorscheme="light"></div>
 	</body>
 	<script type="text/javascript">
 		(function($) {
@@ -159,4 +203,21 @@
 		SyntaxHighlighter.autoloader('cpp c ../scripts/shBrushCpp.js', 'js jscript javascript	../scripts/shBrushJScript.js', 'ruby rails ror rb		../scripts/shBrushRuby.js', 'sql					../scripts/shBrushSql.js');
 		SyntaxHighlighter.all();
 	</script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('.bxslider').bxSlider({
+				auto : true, //自動切り替えの有無
+				pause : 6000, //停止時間※デフォルトは4000
+				speed : 5000, //動くスピード※デフォルトは500
+				minSlides : 3, //一度に表示させる画像の最小値
+				maxSlides : 6, //一度に表示させる画像の数
+				slideWidth : 400,
+				pager : false,
+				randomStart : true
+
+			});
+		});
+	</script>
+
 </html>

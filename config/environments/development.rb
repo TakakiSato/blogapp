@@ -35,4 +35,9 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
+
+  #onfig.logger = Logger.new(config.paths["log"].first)
+  #config.logger.formatter = Logger::Formatter.new
+  #config.logger.datetime_format = "%Y-%m-%d %H:%M:%S"
+
 end

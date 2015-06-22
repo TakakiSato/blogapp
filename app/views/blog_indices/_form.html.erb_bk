@@ -1,0 +1,88 @@
+<%= form_for(@blog_index, :multipart => true) do |f| %>
+
+<div class="input" style="float:left;">
+	<!--タイトル入力欄 -->
+	<%#= @blog_index.id%>
+	<div class="title_form">
+		<%= f.label "題名" %>
+		<br>
+		<%= f.text_field :title, onKeyUp: "ShowHtml( 'inputTiltle' , value );" %>
+	</div>
+	<br>
+	<div class="text_form">
+		<%= f.label "本文" %>
+		<br>
+		<%= f.text_area :text, onKeyUp: "ShowHtml( 'inputText' , value );" %>
+	</div>
+	<input type="hidden" id="blog_index_id" name="blog_index_id" value= <%= @blog_index.id %> />
+
+	<!--送信ボタン -->
+	<div class="actions">
+		<%= f.submit "送信" , disable_with: "送信中...",id: "commit" %>
+	</div>
+
+</div>
+<% end %>
+
+<!--画像登録用フォーム -->
+<%= form_tag('/blog_images', method: "post",id: "blog_images",name:"blog_images", :multipart => true) do %>
+<!--画像登録用ボタン-->
+画像追加
+<br>
+<input type="file" accept="image/*" id="blog_images" name="blog_images" />
+<input type="hidden" id="blog_index_id" name="blog_index_id" value= <%= @blog_index.id %> />
+
+<% end %>
+
+<!--記事プレビュー欄 -->
+<!--タイトルプレビュー-->
+<div id=sammay>
+	<div id="preview" style="float:left;">
+		記事プレビュー欄
+		<h1><div id='inputTiltle'></div></h1>
+		<div id='inputText'></div>
+		<div id='inputImage'></div>
+	</div>
+</div>
+
+<!--隠しパラメータ-->
+<input type="hidden" id="counter" value= 0 />
+
+<!-- JavaScript -->
+<!-- 記事プレビュー用JS -->
+<script type="text/javascript">
+	function ShowHtml(idn, str) {
+		document.getElementById(idn).innerHTML = str.replace(/[\n\r]/g, "<br />");
+	}
+</script>
+
+<!-- 画像登録用JS -->
+<script>
+	var counter = 0
+$(function() {
+$('#blog_images').change(function() {
+$('#blog_images').ajaxSubmit({
+success: function() {
+var insText = '<img src=<%= "/images/#{Time.now.strftime("%Y")}/#{@blog_index.id}" %>/' + counter + '.jpg>';
+//マークアップを入れる箇所を決定する。
+var area = document.getElementById("blog_texts_0");
+var inputedText = document.getElementById("blog_texts_0").value;
+var inputedTextLn = inputedText.length;
+var startPosition = area.selectionStart;
+
+var bfInsText = inputedText.substr(0, startPosition);
+var afInsedText = inputedText.substr(startPosition, inputedTextLn);
+
+//textarea内にマークアップを追加
+document.getElementById('blog_texts_0').value = bfInsText + insText + afInsedText;
+//counterをインクリメントする。
+counter=document.getElementById('counter').value ;
+counter =  parseInt(counter) + 1 ;
+document.getElementById('counter').value = counter;
+
+},
+});
+});
+});
+
+</script>

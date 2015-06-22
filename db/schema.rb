@@ -11,28 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150215100213) do
+ActiveRecord::Schema.define(version: 20150518131748) do
 
   create_table "blog_images", force: true do |t|
-    t.integer  "contents_id"
-    t.integer  "detail_id"
-    t.binary   "image",       limit: 2147483647
+    t.integer  "blog_index_id"
+    t.integer  "image_id"
+    t.binary   "image",         limit: 2147483647
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "blog_indices", force: true do |t|
-    t.string   "title",       null: false
-    t.integer  "contents_id", null: false
-    t.integer  "detail_id",   null: false
+    t.string   "title"
+    t.integer  "num_of_image"
+    t.integer  "num_of_text"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "blog_textes", force: true do |t|
-    t.integer  "contents_id"
-    t.integer  "detail_id"
-    t.text     "text",        limit: 2147483647
+  create_table "blog_texts", force: true do |t|
+    t.integer  "blog_index_id"
+    t.integer  "text_id"
+    t.text     "text",          limit: 2147483647
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -54,5 +54,27 @@ ActiveRecord::Schema.define(version: 20150215100213) do
 
   add_index "blog_users", ["email"], name: "index_blog_users_on_email", unique: true, using: :btree
   add_index "blog_users", ["reset_password_token"], name: "index_blog_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "users", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

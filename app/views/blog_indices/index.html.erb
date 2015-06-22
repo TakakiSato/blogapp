@@ -1,46 +1,48 @@
+<% @id_num = 0 %> <!--記事一覧表示処理 -->
+<!--タイトル表示-->
+<% for id_num in 0..@result_blog_index_id.size-1 do  %>
 
+<%= link_to blog_index_path(@result_blog_index_title[id_num].id), class: "showlink" do%>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <font face="メイリオ"/>
-    <dl id="acMenu">
-      <!--記事一覧表示処理 -->
-      <% @blog_id_array.each do |blog_id| %>
-      <dt>
-        <hr>
-        <br>
-        <h3>
-          <div id="title">
-            <%= link_to blog_index_path(blog_id), class: "button" do%>
-            <%= eval("@blog_id_#{blog_id}")["title"] %>
-            <%= eval("@blog_id_#{blog_id}")["created_at"].strftime("%Y-%m-%d") %>
-            <% end %>
-          </div>
-        </h3>
-        <%#@blog_id_XXには以下が入っている。XXにはblog_idが入っている
-        #{"max_content_num"個記事と写真の総数(数字) "min_img_num"=最初の画像の記事内ID(数字),
-        #"id"=>記事ID(数字), "created_at"=>日付, "updated_at"=>日付, "title"=>"タイトル(文字列)",
-        #記事内ID=>コンテンツ(画像へのパスか、記事のそのもの)※記事内ID分繰り返し,
-        #"blog_txt_all"=>indexに表示させる記事 記事最初の100文字(文字列),
-        #"min_img_path"=>"indexに表示させる画像のパス"}%>
-        <dd>
-          <div id="sammay">
-            <%= image_tag eval("@blog_id_#{blog_id}['min_img_path']"), class: "thumbnail-img"%>
-            <div class=autlink>
-            <%= br(eval("@blog_id_#{blog_id}['blog_txt_all'].html_safe")) %>
-          </div>
-          </div>
-        </dd>
-      </dt>
-      <% end %>
-    </dl>
-    <!--記事一覧表示処理ここまで -->
-    <!-- link_to '新規投稿', new_blog_index_path, :id =>'new_blog_index' -->
-    <br>
-  </tbody>
-</table>
+<!--div class="showlink"-->
+<h1>
+<div class="title">
+	<%= @result_blog_index_title[id_num].title%>
+</div></h1>
+
+<!--本文表示  blog_indexのIDと一致するindex_idを持つimgaeを一つだけ表示する。-->
+<% for image_num in 0..@result_blog_images.size-1 do  %>
+<% if @result_blog_images[image_num].blog_index_id == @result_blog_index_title[id_num].id %>
+<div class="sammary_image">
+	<%= image_tag @result_blog_images[image_num].image, class: "thumbnail-img" ,align: "left" %>
+</div>
+<% break %>
+<% end %>
+<% end %>
+
+<!--本文表示  blog_indexのIDと一致するindex_idを持つtextを一つだけ表示する。-->
+<% for text_num in 0..@result_blog_texts.size-1 do  %>
+<% if @result_blog_texts[text_num].blog_index_id == @result_blog_index_title[id_num].id %>
+<div class="sammary_text">
+	<%= br(tag_erase(@result_blog_texts[text_num].text).html_safe) %>
+</div>
+<% break %>
+<% end %>
+<% end %>
+
+<!-- ログイン中であれば削除ボタン、編集ボタンを表示する。 -->
+<% if signed_in? %>
+<%= link_to '編集', edit_blog_index_path(@result_blog_index_title[id_num].id) %> |
+<%= link_to "削除", blog_index_path(@result_blog_index_title[id_num].id), :method => :delete %>
+<% end %>
+
+<% end %>
+<% @id_num = @id_num +1  %>
+<% end %>
+
+<!-- ログイン中であれば削除ボタン、編集ボタンを表示する。 -->
+<% if signed_in? %>
+<%= link_to '新規作成', new_blog_index_path %>
+<% end %>
+
+<!--記事一覧表示処理ここまで -->
